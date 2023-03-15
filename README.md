@@ -22,4 +22,6 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 ### Optional
 - Sich bewegende Plattformen
 - Gegner, die den Spieler versuchen runter zu schießen
-![Zeitplan](derGianni/Doodle-Jump/Zeitplan.jpg)
+
+## Zeitplan
+![Zeitplan](https://github.com/derGianni/Doodle-Jump/blob/1afb62bf30669690471f69a69a5a485f409d23d1/Zeitplan.JPG)
