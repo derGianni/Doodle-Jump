@@ -25,3 +25,17 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 
 ## Zeitplan
 ![Zeitplan](https://github.com/derGianni/Doodle-Jump/blob/1afb62bf30669690471f69a69a5a485f409d23d1/Zeitplan.JPG)
+
+## User Story
+
+|User Story|
+|----------|
+|Als Spieler|
+|möchte ich die Spielfigur steuern|
+|um Punkte zu erzielen|
+
+|User Story|
+|----------|
+|Als Spieler|
+|möchte ich Items aufsammeln|
+|um schneller Punkte zu erzielen|
