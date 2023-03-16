@@ -40,7 +40,7 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 |möchte ich Items aufsammeln|
 |um schneller Punkte zu erzielen|
 
-###Optional
+### Optional
 
 |User Story|
 |----------|
