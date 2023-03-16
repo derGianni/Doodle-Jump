@@ -19,8 +19,8 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 - Ein Highscore zeigt den höchsten Score an, welcher mit einer Installation des Spieles je erzielt wurde.
 - Das Programm wird in Java programmiert
 - Das Spiel kann pausiert werden, wird weiter gespielt läuft ein 3 Sekunden countdown ab
-- Es giebt bewegende Plattformen
-- Es giebt Gegner, die den Spieler versuchen runter zu schießen
+- Es gibt bewegende Plattformen
+- Es gibt Gegner, die den Spieler versuchen runter zu schießen
 
 ### Optional
 - Änderung der Schwerkraft ab einer bestimmten Höhe
