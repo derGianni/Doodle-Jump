@@ -22,6 +22,9 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 - Es giebt bewegende Plattformen
 - Es giebt Gegner, die den Spieler versuchen runter zu schießen
 
+### Optional
+- Änderung der Schwerkraft ab einer bestimmten Höhe
+
 ## Zeitplan
 ![Zeitplan](https://github.com/derGianni/Doodle-Jump/blob/1afb62bf30669690471f69a69a5a485f409d23d1/Zeitplan.JPG)
 
