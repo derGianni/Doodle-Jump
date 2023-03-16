@@ -39,3 +39,11 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 |Als Spieler|
 |möchte ich Items aufsammeln|
 |um schneller Punkte zu erzielen|
+
+###Optional
+
+|User Story|
+|----------|
+|Als Spieler|
+|möchte ich den Gegnern ausweichen|
+|um nicht herunter zu fallen|
