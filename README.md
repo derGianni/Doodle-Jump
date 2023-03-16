@@ -18,10 +18,9 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 - Der Punktestand (Score) erschließt sich aus der maximal erreichten Höhe
 - Ein Highscore zeigt den höchsten Score an, welcher mit einer Installation des Spieles je erzielt wurde.
 - Das Programm wird in Java programmiert
-
-### Optional
-- Sich bewegende Plattformen
-- Gegner, die den Spieler versuchen runter zu schießen
+- Das Spiel kann pausiert werden, wird weiter gespielt läuft ein 3 Sekunden countdown ab
+- Es giebt bewegende Plattformen
+- Es giebt Gegner, die den Spieler versuchen runter zu schießen
 
 ## Zeitplan
 ![Zeitplan](https://github.com/derGianni/Doodle-Jump/blob/1afb62bf30669690471f69a69a5a485f409d23d1/Zeitplan.JPG)
@@ -39,8 +38,6 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 |Als Spieler|
 |möchte ich Items aufsammeln|
 |um schneller Punkte zu erzielen|
-
-### Optional
 
 |User Story|
 |----------|
