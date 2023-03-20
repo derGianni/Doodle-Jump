@@ -8,22 +8,22 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 - Einzelspieler
 
 ### Spielprinzip
-- Spielfigur, welche auf einer endlosen Reihe von Plattformen nach oben springen muss, ohne herunter zu fallen
+- Spielfigur, welche auf einer endlosen Reihe von Plattformen nach oben springen muss, ohne herunter zu fallen.
 - Die Eigenschaften der Platformen variieren.
-- Durch das Einsammeln von zufällig plazierten Items bekommt der Spieler extra Fähigkeiten
-- Das Ziel ist es so weit wie möglich nach oben zu kommen
+- Durch das Einsammeln von zufällig plazierten Items bekommt der Spieler extra Fähigkeiten.
+- Das Ziel ist es so weit wie möglich nach oben zu kommen.
 
 ### Akzeptanzkriterien
-- Die Karte reicht ins Unendliche
-- Der Punktestand (Score) erschließt sich aus der maximal erreichten Höhe
-- Ein Highscore zeigt den höchsten Score an, welcher mit einer Installation des Spieles je erzielt wurde.
-- Das Programm wird in Java programmiert
-- Das Spiel kann pausiert werden, wird weiter gespielt läuft ein 3 Sekunden countdown ab
-- Es gibt bewegende Plattformen
+- Die Karte reicht ins Unendliche.
+- Der Punktestand (Score) erschließt sich aus der maximal erreichten Höhe.
+- Der Highscore zeigt den höchsten Score an, welcher mit einer Installation des Spieles je erzielt wurde.
+- Das Programm wird in Java programmiert.
+- Das Spiel kann pausiert werden, wird weiter gespielt läuft ein 3 Sekunden countdown ab.
+- Es gibt bewegende Plattformen.
 
 ### Optional
-- Änderung der Schwerkraft ab einer bestimmten Höhe
-- Es gibt Gegner, die den Spieler versuchen runter zu schießen
+- Änderung der Schwerkraft ab einer bestimmten Höhe.
+- Es gibt Gegner, die den Spieler versuchen runter zu schmeißen.
 
 ## Zeitplan
 ![Zeitplan](https://github.com/derGianni/Doodle-Jump/blob/1afb62bf30669690471f69a69a5a485f409d23d1/Zeitplan.JPG)
