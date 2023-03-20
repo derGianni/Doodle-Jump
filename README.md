@@ -5,7 +5,7 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 
 ### Beschreibung
 - 2D Computerspiel
-- Eizelspieler
+- Einzelspieler
 
 ### Spielprinzip
 - Spielfigur, welche auf einer endlosen Reihe von Plattformen nach oben springen muss, ohne herunter zu fallen
