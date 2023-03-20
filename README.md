@@ -10,7 +10,7 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 ### Spielprinzip
 - Spielfigur, welche auf einer endlosen Reihe von Plattformen nach oben springen muss, ohne herunter zu fallen
 - Die Eigenschaften der Platformen variieren.
-- Durch das Einsammeln von zufällig plazierten Items bekommt der Spieler extra fähigkeiten
+- Durch das Einsammeln von zufällig plazierten Items bekommt der Spieler extra Fähigkeiten
 - Das Ziel ist es so weit wie möglich nach oben zu kommen
 
 ### Akzeptanzkriterien
