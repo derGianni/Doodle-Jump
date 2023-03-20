@@ -20,10 +20,10 @@ IT-Projekt von Lorenz Wilhelm, Marcel Halder, Gian Luca Keinath
 - Das Programm wird in Java programmiert
 - Das Spiel kann pausiert werden, wird weiter gespielt läuft ein 3 Sekunden countdown ab
 - Es gibt bewegende Plattformen
-- Es gibt Gegner, die den Spieler versuchen runter zu schießen
 
 ### Optional
 - Änderung der Schwerkraft ab einer bestimmten Höhe
+- Es gibt Gegner, die den Spieler versuchen runter zu schießen
 
 ## Zeitplan
 ![Zeitplan](https://github.com/derGianni/Doodle-Jump/blob/1afb62bf30669690471f69a69a5a485f409d23d1/Zeitplan.JPG)
