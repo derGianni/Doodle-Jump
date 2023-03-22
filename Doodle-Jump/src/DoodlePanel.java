@@ -22,8 +22,8 @@ public class DoodlePanel extends JPanel{
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(hintergrund, 0, 0, null);
-		g.drawImage(spielfigur, 0, 700, 50, 50, null);
+		g.drawImage(hintergrund, 600, 50, null);
+		g.drawImage(spielfigur, 828, 800, 50, 50, null);
 		
 	}
 
