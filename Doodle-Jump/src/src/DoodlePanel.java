@@ -13,7 +13,7 @@ public class DoodlePanel extends JPanel{
 		super();
 		try {
 			hintergrund = ImageIO.read(getClass().getResource("img/Hintergrund.png"));
-			spielfigur = ImageIO.read(getClass().getResource("img/Figur_Rechts.png"));
+			spielfigur = ImageIO.read(getClass().getResource("img/Spielfigur.png"));
 		} catch (IOException e) {
 			System.out.println("Fehler beim Laden der Bilder!");
 			e.printStackTrace();
@@ -22,9 +22,9 @@ public class DoodlePanel extends JPanel{
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		//g.drawImage(hintergrund, 0, 0, null);
-		//g.drawImage(spielfigur, 828, 800, , null);
-		g.drawImage(hintergrund, 0, 0, 531, 1062, getBackground(), getFocusCycleRootAncestor());
+		g.drawImage(hintergrund, 600, 50, null);
+		g.drawImage(spielfigur, 828, 800, 50, 50, null);
+		
 	}
 
 }

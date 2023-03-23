@@ -31,7 +31,6 @@ public class DoodleGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DoodleGUI() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
