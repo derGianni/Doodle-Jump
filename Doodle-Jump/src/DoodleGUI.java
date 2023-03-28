@@ -10,6 +10,7 @@ public class DoodleGUI extends JFrame {
 
 	private JPanel contentPane;
 	private DoodlePanel dasDoodlePanel;
+	private PlattformPanel dasPlattformPanel;
 
 	/**
 	 * Launch the application.

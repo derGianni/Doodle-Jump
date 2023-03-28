@@ -1,11 +1,7 @@
-/**
- * 
- */
+import java.util.Random;
 
-/**
- * @author gian.keinath
- *
- */
+
 public class DoodleSteuerung {
-
+	
+	
 }

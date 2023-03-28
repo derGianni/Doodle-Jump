@@ -1,15 +1,17 @@
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import java.awt.AlphaComposite;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class DoodlePanel extends JPanel{
 	private BufferedImage hintergrund;
 	private BufferedImage spielfigur;
 	private BufferedImage plattform_1;
+	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>(20);
 	
 	public DoodlePanel() {
 		super();
@@ -23,13 +25,34 @@ public class DoodlePanel extends JPanel{
 		}
 	}
 	
+	public void erzeugePlattformen() {
+		Random ran = new Random();
+			for(int i = 0; i < ran.nextInt(5 - 1 + 1) + 1; i++) {
+				int typ = 0;
+				
+				if(typ == 0 || typ == 1 || typ == 2) {
+					DoodlePlattform dieDoodlePlattform = new DoodlePlattform();
+					diePlattformen.add(dieDoodlePlattform);
+				}
+				else if(typ == 3) {
+					
+				}
+				else if(typ == 4) {
+					
+				}
+			}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		//g.drawImage(hintergrund, 0, 0, null);
 		//g.drawImage(spielfigur, 828, 800, , null);
 		g.drawImage(hintergrund, 0, 0, 531, 1062, getBackground(), null);
-        
-		g.drawImage(plattform_1, 0, 0, 100, 25, null, null);
+		for(int i = 0; i < diePlattformen.size(); i++) {
+			DoodlePlattform diePlattform = diePlattformen.get(i);
+			g.drawImage(plattform_1, diePlattform.gibX(), diePlattform.gibY(), 500,128,null, null);
+		}
+		g.drawImage(plattform_1, 0, 0, 125, 32, null, null);
 	}
 
 }

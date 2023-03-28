@@ -1,38 +1,23 @@
 import java.util.Random;
 
 public abstract class Plattform {
-	protected int x;
-	protected int y;
+	Random ran = new Random();
+	int posX = ran.nextInt(100 - 1) + 1;
+	int posY = ran.nextInt(100 - 1) + 1;
 	
 	public int gibX() {
-		return x;
+		return posX;
 	}
 	
 	public int gibY() {
-		return y;
+		return posY;
 	}
 	
 	public void bewegeRunter() {
-		y = y - 1;
+		posY = posY - 1;
 	}
 	
-	public void erzeugePlattform() {
-		Random ran = new Random();
-		for(int i = 0; i < ran.nextInt(5 - 1 + 1) + 1; i++) {
-			int typ = 0; 
-			if(typ == 0 || typ == 1 || typ == 2) {
-				
-			}
-			else if(typ == 3) {
-				
-			}
-			else if(typ == 4) {
-				
-			}
-		}
-		
-		 
-	}
+	
 }
 
 	
