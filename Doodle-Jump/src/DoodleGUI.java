@@ -1,22 +1,27 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
 
-public class DoodleGUI extends JFrame {
+public class DoodleGUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private DoodlePanel dasDoodlePanel;
 	private PlattformPanel dasPlattformPanel;
+	DoodleSteuerung dieDoodleSteuerung;
+	private Timer tim;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					DoodleGUI frame = new DoodleGUI();
@@ -25,7 +30,9 @@ public class DoodleGUI extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
+		DoodleGUI frame = new DoodleGUI();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -41,8 +48,25 @@ public class DoodleGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		dasDoodlePanel = new DoodlePanel();
+		
+		
+		
+		dieDoodleSteuerung = new DoodleSteuerung();
+		dieDoodleSteuerung.erzeugePlattformen();
+		
+		dasDoodlePanel = dieDoodleSteuerung.getPanel();
 		contentPane.add(dasDoodlePanel, BorderLayout.CENTER);
+		
+		dieDoodleSteuerung.erzeugePlattformen();
+		
+		
+		tim = new Timer(50, this);
+		tim.start();
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		dieDoodleSteuerung.verarbeiteTimerEvent();
 	}
 
 }
