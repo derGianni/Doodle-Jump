@@ -28,9 +28,9 @@ public class DoodlePanel extends JPanel{
 		
 	}
 	
-	public void setPlatformen(ArrayList<DoodlePlattform> pF)
+	public void setzePlattformen(ArrayList<DoodlePlattform> pF)
 	{
-		this.diePlattformen = pF;
+		diePlattformen = pF;
 	}
 	
 	

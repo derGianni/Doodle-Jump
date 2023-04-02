@@ -4,6 +4,7 @@ public abstract class Plattform {
 	int posX = 0;
 	int posY = 0;
 	int posGruppe = 0;
+	int geschwindigkeit = 5;
 	public Plattform() {
 		Random ran = new Random();
 			posX = ran.nextInt(383 - 1) + 1;
@@ -24,8 +25,8 @@ public abstract class Plattform {
 	}
 	
 	public void bewegeRunter() {
-		posY = posY + 1;
-		posGruppe++;
+		posY = posY + geschwindigkeit;
+		posGruppe = posGruppe + geschwindigkeit;
 	}
 	
 	

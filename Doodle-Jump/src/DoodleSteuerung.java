@@ -37,12 +37,12 @@ public class DoodleSteuerung {
 		
 		System.out.println(diePlattformen.get(0).gibY());
 		
+		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.repaint();
 	}
 	
 	public void erzeugePlattformen() {
 		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();
-		dasDoodlePanel.setPlatformen(zPlattformen);
 		
 		Random ran = new Random();
 		
