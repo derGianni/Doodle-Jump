@@ -9,6 +9,7 @@ public class DoodleSteuerung {
 	private DoodlePanel dasDoodlePanel;
 	private DoodleGUI dieDoodleGUI;
 	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
+	static Random ran = new Random();
 	
 	public DoodleSteuerung() {
 		dasDoodlePanel = new DoodlePanel();
@@ -47,7 +48,7 @@ public class DoodleSteuerung {
 	public void erzeugePlattformen() {
 		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();
 		
-		Random ran = new Random();
+		
 		
 			for(int i = 0; i < ran.nextInt(3 - 1 + 1) + 1; i++) {
 				int typ = 0;
@@ -67,6 +68,18 @@ public class DoodleSteuerung {
 							}
 						}
 					}
+					
+					for(int j = 0; j < diePlattformen.size(); j++) {
+						int x = diePlattformen.get(j).gibX();
+						int y = diePlattformen.get(j).gibY();
+						if(!((pY > y + 32) && !(pY < y - 10))) {
+							if(!((pX > x + 110) && !(pX < x - 20))) {
+								erzeugePlattformen();
+								return;
+							}
+						}
+					}
+					
 					zPlattformen.add(dieDoodlePlattform);
 					
 				}

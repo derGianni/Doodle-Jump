@@ -31,7 +31,7 @@ public class DoodlePanel extends JPanel{
 	
 	public void setzePlattformen(ArrayList<DoodlePlattform> pF)
 	{
-		diePlattformen = pF;00
+		diePlattformen = pF;
 	}
 	public void setzeSpielfigur(Spielfigur pDieSpielfigur) {
 		dieSpielfigur = pDieSpielfigur;
