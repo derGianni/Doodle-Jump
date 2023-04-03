@@ -13,7 +13,7 @@ public class DoodleGUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private DoodlePanel dasDoodlePanel;
-	private PlattformPanel dasPlattformPanel;
+	Spielfigur dieSpielfigur;
 	DoodleSteuerung dieDoodleSteuerung;
 	private Timer tim;
 
@@ -49,6 +49,7 @@ public class DoodleGUI extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		
 		
+	
 		
 		
 		dieDoodleSteuerung = new DoodleSteuerung();

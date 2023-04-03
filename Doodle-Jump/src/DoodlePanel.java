@@ -12,6 +12,7 @@ public class DoodlePanel extends JPanel{
 	private BufferedImage spielfigur;
 	private BufferedImage plattform_1;
 	private ArrayList<DoodlePlattform> diePlattformen;
+	private Spielfigur dieSpielfigur;
 	
 	public DoodlePanel() {
 		super();
@@ -30,7 +31,10 @@ public class DoodlePanel extends JPanel{
 	
 	public void setzePlattformen(ArrayList<DoodlePlattform> pF)
 	{
-		diePlattformen = pF;
+		diePlattformen = pF;00
+	}
+	public void setzeSpielfigur(Spielfigur pDieSpielfigur) {
+		dieSpielfigur = pDieSpielfigur;
 	}
 	
 	
@@ -50,6 +54,7 @@ public class DoodlePanel extends JPanel{
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		g.drawImage(spielfigur, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
 		//g.drawImage(plattform_1, 0, 0, 125, 32, null, null);
 	}
 

@@ -5,12 +5,14 @@ import java.util.Random;
 public class DoodleSteuerung {
 	private DoodleSteuerung dieDoodleSteuerung;
 	private DoodlePlattform dieDoodlePlattform;
+	private Spielfigur dieSpielfigur;
 	private DoodlePanel dasDoodlePanel;
 	private DoodleGUI dieDoodleGUI;
 	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
 	
 	public DoodleSteuerung() {
 		dasDoodlePanel = new DoodlePanel();
+		dieSpielfigur = new Spielfigur();
 	}
 	
 	public DoodlePanel getPanel()
@@ -38,6 +40,7 @@ public class DoodleSteuerung {
 		System.out.println(diePlattformen.get(0).gibY());
 		
 		dasDoodlePanel.setzePlattformen(diePlattformen);
+		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
 		dasDoodlePanel.repaint();
 	}
 	
