@@ -3,13 +3,16 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EmptyBorder;
 
-public class DoodleGUI extends JFrame implements ActionListener {
+public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 
 	private JPanel contentPane;
 	private DoodlePanel dasDoodlePanel;
@@ -33,6 +36,7 @@ public class DoodleGUI extends JFrame implements ActionListener {
 		});*/
 		DoodleGUI frame = new DoodleGUI();
 		frame.setVisible(true);
+	
 	}
 
 	/**
@@ -48,11 +52,9 @@ public class DoodleGUI extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		dieSpielfigur = new Spielfigur();
 		
-	
-		
-		
-		dieDoodleSteuerung = new DoodleSteuerung();
+		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur);
 		dieDoodleSteuerung.erzeugePlattformen();
 		
 		dasDoodlePanel = dieDoodleSteuerung.getPanel();
@@ -60,14 +62,42 @@ public class DoodleGUI extends JFrame implements ActionListener {
 		
 		dieDoodleSteuerung.erzeugePlattformen();
 		
-		
 		tim = new Timer(50, this);
 		tim.start();
+		this.addKeyListener(this);
+		
+	
+		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		dieDoodleSteuerung.verarbeiteTimerEvent();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		switch(e.getKeyCode()) {
+		
+		case 39: dieSpielfigur.gehRechts();
+		break;
+		case 37: dieSpielfigur.gehLinks();
+		break;
+		}
+	}
+	
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

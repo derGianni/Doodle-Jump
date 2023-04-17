@@ -11,9 +11,10 @@ public class DoodleSteuerung {
 	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
 	static Random ran = new Random();
 	
-	public DoodleSteuerung() {
+	public DoodleSteuerung(Spielfigur pSpielfigur) {
+		dieSpielfigur = pSpielfigur;
 		dasDoodlePanel = new DoodlePanel();
-		dieSpielfigur = new Spielfigur();
+		
 	}
 	
 	public DoodlePanel getPanel()
@@ -37,9 +38,7 @@ public class DoodleSteuerung {
 		if(minPosGruppe > 99) {
 			erzeugePlattformen();
 		}
-		
-		System.out.println(diePlattformen.get(0).gibY());
-		
+				
 		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
 		dasDoodlePanel.repaint();
@@ -48,9 +47,10 @@ public class DoodleSteuerung {
 	public void erzeugePlattformen() {
 		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();
 		
+		int random = ran.nextInt(3 - 1) + 1;
+		System.out.println(random);
 		
-		
-			for(int i = 0; i < ran.nextInt(3 - 1 + 1) + 1; i++) {
+			for(int i = 0; i < random; i++) {
 				int typ = 0;
 				
 				if(typ == 0 || typ == 1 || typ == 2) {
@@ -68,18 +68,22 @@ public class DoodleSteuerung {
 							}
 						}
 					}
-					
+					/*
 					for(int j = 0; j < diePlattformen.size(); j++) {
 						int x = diePlattformen.get(j).gibX();
 						int y = diePlattformen.get(j).gibY();
 						if(!((pY > y + 32) && !(pY < y - 10))) {
+							System.out.println((pY > y + 32) + " " + pY + " " + y);
 							if(!((pX > x + 110) && !(pX < x - 20))) {
+								//----
 								erzeugePlattformen();
 								return;
 							}
 						}
 					}
+					*/
 					
+
 					zPlattformen.add(dieDoodlePlattform);
 					
 				}
