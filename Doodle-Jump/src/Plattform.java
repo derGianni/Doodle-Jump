@@ -5,7 +5,7 @@ public abstract class Plattform {
 	int posY = 0;
 	static Random ran = new Random();
 	int posGruppe = 0;
-	int geschwindigkeit = 5;
+	int geschwindigkeit = 1;
 	public Plattform() {
 			posX = ran.nextInt(383 - 1) + 1;
 			posY = ran.nextInt(100 - 1) + 1;
@@ -27,6 +27,17 @@ public abstract class Plattform {
 	public void bewegeRunter() {
 		posY = posY + geschwindigkeit;
 		posGruppe = posGruppe + geschwindigkeit;
+	}
+	
+	public boolean prüfeBerührt(int pPosX, int pPosY, int pBreit) {
+		if(((pPosX > posX && pPosX < pPosX + 99)||(pPosX + pBreit > posX && pPosX + pBreit < pPosX + 99))&&(pPosY + 75 == posY)) {
+			System.out.println("Berührt");
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	

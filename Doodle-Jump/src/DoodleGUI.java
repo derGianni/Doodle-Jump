@@ -63,7 +63,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		
 		dieDoodleSteuerung.erzeugePlattformen();
 		
-		tim = new Timer(50, this);
+		tim = new Timer(10, this);
 		tim.start();
 		this.addKeyListener(this);
 		
@@ -94,7 +94,6 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		break;
 		}
 	}
-	
 
 	@Override
 	public void keyReleased(KeyEvent e) {

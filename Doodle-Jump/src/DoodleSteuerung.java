@@ -41,7 +41,7 @@ public class DoodleSteuerung {
 				
 		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
-		dieSpielfigur.timer();
+		dieSpielfigur.timer(diePlattformen);
 		dasDoodlePanel.repaint();
 	}
 	
@@ -49,7 +49,6 @@ public class DoodleSteuerung {
 		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();
 		
 		int random = ran.nextInt(3 - 1) + 1;
-		System.out.println(random);
 		
 			for(int i = 0; i < random; i++) {
 				int typ = 0;

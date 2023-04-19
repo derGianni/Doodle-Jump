@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Spielfigur {
@@ -6,7 +7,7 @@ public class Spielfigur {
 	int posY = 600;
 	int geschwindigkeit = 5;
 	int bewegungX = 0;
-	int bewegungY = 100;		
+	double bewegungY = 20;		
 		
 	public int gibX() {
 		return posX;
@@ -21,19 +22,27 @@ public class Spielfigur {
 		bewegungX = pBewegung;
 	}
 	
-	public void timer() {
+	public void timer(ArrayList<DoodlePlattform> pDiePlattformen) {
 		//Bewegungen in X-Richtung
 		if (bewegungX == 1) {
-			posX = posX + 10;
+			posX = posX + 5;
 		}
 		else if (bewegungX == 2) {
-			posX = posX - 10;
+			posX = posX - 5;
 		}
 		
 		//Bewegungen in Y-Richtung
-		posY = posY - bewegungY;
-		bewegungY = bewegungY - 10;
 		
+		for(int i = 0; i < pDiePlattformen.size(); i++) {
+			pDiePlattformen.get(i).prüfeBerührt(posX, posY, 66);
+		}
+		
+		posY = posY - (int)bewegungY;
+		bewegungY = bewegungY - 0.2;
+		
+		if(bewegungY < -20) {
+			bewegungY = -20;
+		}
 		
 		
 		
