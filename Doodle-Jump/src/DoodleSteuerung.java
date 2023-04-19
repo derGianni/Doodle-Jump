@@ -41,6 +41,7 @@ public class DoodleSteuerung {
 				
 		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
+		dieSpielfigur.timer();
 		dasDoodlePanel.repaint();
 	}
 	
