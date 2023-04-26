@@ -29,9 +29,9 @@ public abstract class Plattform {
 		posGruppe = posGruppe + geschwindigkeit;
 	}
 	
-	public boolean prüfeBerührt(int pPosX, int pPosY, int pBreit) {
+	public boolean pruefeBeruehrt(int pPosX, int pPosY, int pBreit) {
 		if(((pPosX > posX && pPosX < pPosX + 99)||(pPosX + pBreit > posX && pPosX + pBreit < pPosX + 99))&&(pPosY + 75 == posY)) {
-			System.out.println("Berührt");
+			System.out.println("Berï¿½hrt");
 			return true;
 		}
 		else {

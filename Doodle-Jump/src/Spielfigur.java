@@ -34,7 +34,7 @@ public class Spielfigur {
 		//Bewegungen in Y-Richtung
 		
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
-			pDiePlattformen.get(i).prüfeBerührt(posX, posY, 66);
+			pDiePlattformen.get(i).pruefeBeruehrt(posX, posY, 66);
 		}
 		
 		posY = posY - (int)bewegungY;
