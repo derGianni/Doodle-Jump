@@ -46,7 +46,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
-		//Das panel hat die Größe
+		//Das panel hat die GroeÃŸe
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
