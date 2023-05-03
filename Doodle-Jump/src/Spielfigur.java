@@ -16,13 +16,16 @@ public class Spielfigur {
 	public int gibY() {
 		return posY;
 	}
+	public void setzeY(int pPosY) {
+		posY = pPosY;
+	}
 	
 	public void setBewege(int pBewegung) {
 		// 0 = Keine 1 = Links 2 = Rechts
 		bewegungX = pBewegung;
 	}
 	
-	public void timer(ArrayList<DoodlePlattform> pDiePlattformen) {
+	public void bewege(ArrayList<DoodlePlattform> pDiePlattformen) {
 		//Bewegungen in X-Richtung
 		if (bewegungX == 1) {
 			posX = posX + 5;
@@ -34,14 +37,16 @@ public class Spielfigur {
 		//Bewegungen in Y-Richtung
 		
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
-			pDiePlattformen.get(i).pruefeBeruehrt(posX, posY, 66);
+			if(pDiePlattformen.get(i).pruefeBeruehrt(posX, posY, 66, bewegungY)) {
+				bewegungY = 10;
+			}
 		}
 		
 		posY = posY - (int)bewegungY;
 		bewegungY = bewegungY - 0.2;
 		
-		if(bewegungY < -20) {
-			bewegungY = -20;
+		if(bewegungY < -10) {
+			bewegungY = -10;
 		}
 		
 		

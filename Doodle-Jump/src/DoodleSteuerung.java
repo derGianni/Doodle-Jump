@@ -23,10 +23,26 @@ public class DoodleSteuerung {
 	}
 	
 	public void verarbeiteTimerEvent() {
+		
+		dieSpielfigur.bewege(diePlattformen);
+		
+		if(dieSpielfigur.gibY() < 100) {
+			int ueberschuss = 100 - dieSpielfigur.gibY();
+			bewegePlattformen(ueberschuss);
+			dieSpielfigur.setzeY(100);
+		}
+		
+		dasDoodlePanel.setzePlattformen(diePlattformen);
+		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
+		
+		dasDoodlePanel.repaint();
+	}
+	
+	public void bewegePlattformen(int pUeberschuss) {
 		int minPosGruppe = 0;
 		for(int i = 0; i<diePlattformen.size(); i++) {
 			DoodlePlattform plattform = diePlattformen.get(i);
-			plattform.bewegeRunter();
+			plattform.bewegeRunter(pUeberschuss);
 			
 			if(plattform.gibPosGruppe() < minPosGruppe) {
 				minPosGruppe = plattform.gibPosGruppe();
@@ -38,11 +54,6 @@ public class DoodleSteuerung {
 		if(minPosGruppe > 99) {
 			erzeugePlattformen();
 		}
-				
-		dasDoodlePanel.setzePlattformen(diePlattformen);
-		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
-		dieSpielfigur.timer(diePlattformen);
-		dasDoodlePanel.repaint();
 	}
 	
 	public void erzeugePlattformen() {

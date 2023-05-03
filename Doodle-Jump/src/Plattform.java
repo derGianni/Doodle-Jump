@@ -24,19 +24,36 @@ public abstract class Plattform {
 		return posGruppe;
 	}
 	
-	public void bewegeRunter() {
-		posY = posY + geschwindigkeit;
-		posGruppe = posGruppe + geschwindigkeit;
+	public void bewegeRunter(int pWert) {
+		posY = posY + pWert;
+		posGruppe = posGruppe + pWert;
 	}
 	
-	public boolean pruefeBeruehrt(int pPosX, int pPosY, int pBreit) {
-		if(((pPosX > posX && pPosX < pPosX + 99)||(pPosX + pBreit > posX && pPosX + pBreit < pPosX + 99))&&(pPosY + 75 == posY)) {
-			System.out.println("Ber�hrt");
-			return true;
+	
+	public boolean pruefeBeruehrt(int pPosX, int pPosY, int pBreit, double pBewegungY) {
+		
+		if(pPosX > posX) {
+			if(pPosX + 18 < posX + 90) {
+				
+			if((pPosY + 75) > posY) {
+				if(pPosY + 75 < posY + (pBewegungY * -1)) {
+					
+					return true;
+					
+				}}
+			}
 		}
-		else {
-			return false;
+		else if(pPosX + pBreit > posX && pPosX + pBreit < posX + 90) {
+			if(pPosY + 75 > posY) {
+				if(pPosY + 75 < posY + (pBewegungY * -1)) {
+					
+					return true;
+					
+				}
+			}
 		}
+			
+		return false;
 		
 	}
 	
