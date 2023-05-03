@@ -10,6 +10,8 @@ public class DoodleSteuerung {
 	private DoodleGUI dieDoodleGUI;
 	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
 	static Random ran = new Random();
+	int punkte = 0;
+	
 	
 	public DoodleSteuerung(Spielfigur pSpielfigur) {
 		dieSpielfigur = pSpielfigur;
@@ -30,12 +32,19 @@ public class DoodleSteuerung {
 			int ueberschuss = 100 - dieSpielfigur.gibY();
 			bewegePlattformen(ueberschuss);
 			dieSpielfigur.setzeY(100);
+			pruefePunktestand(ueberschuss);
 		}
 		
 		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
 		
 		dasDoodlePanel.repaint();
+	}
+	
+	public void pruefePunktestand(int ueberschuss) {
+		 punkte = punkte + ueberschuss;
+		System.out.println(punkte/100 + " " + ueberschuss); 
+		dasDoodlePanel.setzePunkte(punkte);
 	}
 	
 	public void bewegePlattformen(int pUeberschuss) {
