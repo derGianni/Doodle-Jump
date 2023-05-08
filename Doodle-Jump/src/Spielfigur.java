@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Spielfigur {
-	
 	int posX = 203;
 	int posY = 600;
 	int geschwindigkeit = 5;
