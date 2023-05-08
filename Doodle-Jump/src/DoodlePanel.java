@@ -13,6 +13,7 @@ public class DoodlePanel extends JPanel{
 	private BufferedImage plattform_1;
 	private ArrayList<DoodlePlattform> diePlattformen;
 	private Spielfigur dieSpielfigur;
+	private int punkte = 0;
 	
 	public DoodlePanel() {
 		super();
@@ -36,6 +37,10 @@ public class DoodlePanel extends JPanel{
 	public void setzeSpielfigur(Spielfigur pDieSpielfigur) {
 		dieSpielfigur = pDieSpielfigur;
 	}
+	public void setzePunkte(int pPunkte) {
+		punkte = pPunkte;
+	}
+	
 	
 	
 	
@@ -44,6 +49,13 @@ public class DoodlePanel extends JPanel{
 		//g.drawImage(hintergrund, 0, 0, null);
 		//g.drawImage(spielfigur, 828, 800, , null);
 		g.drawImage(hintergrund, 0, 0, 531, 1062, getBackground(), null);
+		
+		String s = String.valueOf(punkte/100);
+		char[] punkteZeichnen = new char[5];
+		for(int i = 0; i < 5; i++) {
+			punkteZeichnen[i] = '1';
+		}
+		g.drawChars(punkteZeichnen, 0, 5, 200, 30);
 		
 		try{
 			for(int i = 0; i < diePlattformen.size(); i++) {
