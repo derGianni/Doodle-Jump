@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 
@@ -6,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -15,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 
 	private JPanel contentPane;
+	private JPanel contentPane2;
 	private DoodlePanel dasDoodlePanel;
 	Spielfigur dieSpielfigur;
 	DoodleSteuerung dieDoodleSteuerung;
@@ -46,12 +49,13 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
-		//Das panel hat die Größe
+		//Das panel hat die Größe 531 x 1062
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+	
 		
 		dieSpielfigur = new Spielfigur();
 		
@@ -61,10 +65,25 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		dasDoodlePanel = dieDoodleSteuerung.getPanel();
 		contentPane.add(dasDoodlePanel, BorderLayout.CENTER);
 		
+		
+		JButton btnS1Wuerfeln = new JButton("Start");
+		btnS1Wuerfeln.setBounds(203, 400, 80, 40);
+		contentPane.add(btnS1Wuerfeln);
+		dasDoodlePanel.setBounds(0, 0, 200, 200);
+		contentPane.add(dasDoodlePanel);
+		setContentPane(contentPane);
+		btnS1Wuerfeln.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tim.start();
+			}
+		});
+		
+		
+		
 		dieDoodleSteuerung.erzeugePlattformen();
 		
 		tim = new Timer(10, this);
-		tim.start();
+		dieDoodleSteuerung.verarbeiteTimerEvent();
 		this.addKeyListener(this);
 		
 		

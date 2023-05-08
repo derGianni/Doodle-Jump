@@ -42,9 +42,9 @@ public class DoodleSteuerung {
 	}
 	
 	public void pruefePunktestand(int ueberschuss) {
-		 punkte = punkte + ueberschuss;
-		System.out.println(punkte/100 + " " + ueberschuss); 
-		dasDoodlePanel.setzePunkte(punkte);
+		punkte = punkte + ueberschuss;
+		//System.out.println(punkte/100 + " " + ueberschuss); 
+		dasDoodlePanel.setzePunkte(punkte/100);
 	}
 	
 	public void bewegePlattformen(int pUeberschuss) {
