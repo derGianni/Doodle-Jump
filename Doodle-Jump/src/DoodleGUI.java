@@ -10,8 +10,10 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 
 public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
@@ -21,6 +23,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 	private DoodlePanel dasDoodlePanel;
 	Spielfigur dieSpielfigur;
 	DoodleSteuerung dieDoodleSteuerung;
+	DoodleGUI dieDoodleGUI;
 	private Timer tim;
 
 	/**
@@ -37,8 +40,8 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 				}
 			}
 		});*/
-		DoodleGUI frame = new DoodleGUI();
-		frame.setVisible(true);
+		DoodleGUI dieDoodleGUI = new DoodleGUI();
+		dieDoodleGUI.setVisible(true);
 	
 	}
 
@@ -59,7 +62,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		
 		dieSpielfigur = new Spielfigur();
 		
-		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur);
+		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, contentPane);
 		dieDoodleSteuerung.erzeugePlattformen();
 		
 		dasDoodlePanel = dieDoodleSteuerung.getPanel();
@@ -87,6 +90,10 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		tim = new Timer(10, this);
 		dieDoodleSteuerung.verarbeiteTimerEvent();
 		this.addKeyListener(this);
+		
+	}
+	public void zeigeVerloren() {
+		
 		
 	}
 	

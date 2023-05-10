@@ -1,21 +1,26 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+
 
 public class DoodleSteuerung {
 	private DoodleSteuerung dieDoodleSteuerung;
 	private DoodlePlattform dieDoodlePlattform;
 	private Spielfigur dieSpielfigur;
 	private DoodlePanel dasDoodlePanel;
-	private DoodleGUI dieDoodleGUI;
+	private JPanel contentPane;
 	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
 	static Random ran = new Random();
 	int punkte = 0;
 	
 	
-	public DoodleSteuerung(Spielfigur pSpielfigur) {
+	public DoodleSteuerung(Spielfigur pSpielfigur,  JPanel pContentPane) {
 		dieSpielfigur = pSpielfigur;
 		dasDoodlePanel = new DoodlePanel();
+		contentPane = pContentPane;
 		
 	}
 	
@@ -34,7 +39,7 @@ public class DoodleSteuerung {
 			dieSpielfigur.setzeY(100);
 			pruefePunktestand(ueberschuss);
 		}
-		
+		pruefeVerloren();
 		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
 		
@@ -64,6 +69,22 @@ public class DoodleSteuerung {
 			erzeugePlattformen();
 		}
 	}
+	public void pruefeVerloren() {
+	    if(dieSpielfigur.gibY() > 950) {
+	        System.out.println("Verloren");
+	        UIManager.put("OptionPane.yesButtonText", "Neustart");
+	        UIManager.put("OptionPane.noButtonText", "Schliessen");
+	      int wahl =  JOptionPane.showConfirmDialog(contentPane, "Verloren", "verloren", JOptionPane.YES_NO_OPTION);
+	      if(wahl == JOptionPane.YES_OPTION) {
+	      
+	      }
+	      else {
+	    	System.exit(0);  
+	      }
+	      }
+	    
+	}
+	
 	
 	public void erzeugePlattformen() {
 		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();

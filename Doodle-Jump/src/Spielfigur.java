@@ -34,12 +34,6 @@ public class Spielfigur {
 		else if (bewegungX == 2) {
 			posX = posX - 5;
 		}
-		if (posX > 408) {
-			posX = 409;
-		}
-		else if (posX < 1) {
-			posX = 0;
-		}
 		
 		//Bewegungen in Y-Richtung
 		
