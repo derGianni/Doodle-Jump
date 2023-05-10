@@ -12,15 +12,16 @@ public class DoodleSteuerung {
 	private Spielfigur dieSpielfigur;
 	private DoodlePanel dasDoodlePanel;
 	private JPanel contentPane;
+	private DoodleGUI dieDoodleGUI;
 	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
 	static Random ran = new Random();
 	int punkte = 0;
 	
 	
-	public DoodleSteuerung(Spielfigur pSpielfigur,  JPanel pContentPane) {
+	public DoodleSteuerung(Spielfigur pSpielfigur,  DoodleGUI pDieDoodleGUI) {
 		dieSpielfigur = pSpielfigur;
 		dasDoodlePanel = new DoodlePanel();
-		contentPane = pContentPane;
+		dieDoodleGUI = pDieDoodleGUI;
 		
 	}
 	
@@ -72,15 +73,7 @@ public class DoodleSteuerung {
 	public void pruefeVerloren() {
 	    if(dieSpielfigur.gibY() > 950) {
 	        System.out.println("Verloren");
-	        UIManager.put("OptionPane.yesButtonText", "Neustart");
-	        UIManager.put("OptionPane.noButtonText", "Schliessen");
-	      int wahl =  JOptionPane.showConfirmDialog(contentPane, "Verloren", "verloren", JOptionPane.YES_NO_OPTION);
-	      if(wahl == JOptionPane.YES_OPTION) {
-	      
-	      }
-	      else {
-	    	System.exit(0);  
-	      }
+	        dieDoodleGUI.verloren();
 	      }
 	    
 	}

@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
@@ -44,6 +45,18 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		dieDoodleGUI.setVisible(true);
 	
 	}
+	
+	public void verloren() {
+		UIManager.put("OptionPane.yesButtonText", "Neustart");
+        UIManager.put("OptionPane.noButtonText", "Schliessen");
+      int wahl =  JOptionPane.showConfirmDialog(contentPane, "Verloren", "verloren", JOptionPane.YES_NO_OPTION);
+      if(wahl == JOptionPane.YES_OPTION) {
+      
+      }
+      else {
+    	System.exit(0);  
+      }
+	}
 
 	/**
 	 * Create the frame.
@@ -62,7 +75,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		
 		dieSpielfigur = new Spielfigur();
 		
-		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, contentPane);
+		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, dieDoodleGUI);
 		dieDoodleSteuerung.erzeugePlattformen();
 		
 		dasDoodlePanel = dieDoodleSteuerung.getPanel();
