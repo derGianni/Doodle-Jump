@@ -37,14 +37,14 @@ public class DoodleSteuerung {
 		
 		dasDoodlePanel.setzePlattformen(diePlattformen);
 		dasDoodlePanel.setzeSpielfigur(dieSpielfigur);
-		pruefeVerloren();
+		
 		dasDoodlePanel.repaint();
 	}
 	
 	public void pruefePunktestand(int ueberschuss) {
-		 punkte = punkte + ueberschuss;
-		System.out.println(punkte/100 + " " + ueberschuss); 
-		dasDoodlePanel.setzePunkte(punkte);
+		punkte = punkte + ueberschuss;
+		//System.out.println(punkte/100 + " " + ueberschuss); 
+		dasDoodlePanel.setzePunkte(punkte/100);
 	}
 	
 	public void bewegePlattformen(int pUeberschuss) {
@@ -63,15 +63,6 @@ public class DoodleSteuerung {
 		if(minPosGruppe > 99) {
 			erzeugePlattformen();
 		}
-	}
-	
-	public void pruefeVerloren() {
-		
-		if(dieSpielfigur.gibY()>950) {
-		
-		System.out.println("Veloren");
-		}
-		
 	}
 	
 	public void erzeugePlattformen() {
