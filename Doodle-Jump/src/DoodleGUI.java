@@ -51,7 +51,12 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
         UIManager.put("OptionPane.noButtonText", "Schliessen");
       int wahl =  JOptionPane.showConfirmDialog(contentPane, "Verloren", "verloren", JOptionPane.YES_NO_OPTION);
       if(wahl == JOptionPane.YES_OPTION) {
-      
+    	  
+    	  tim.stop();
+    	  dispose();
+    	  dieDoodleGUI = new DoodleGUI();
+    	  dieDoodleGUI.setVisible(true);
+
       }
       else {
     	System.exit(0);  
@@ -75,7 +80,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		
 		dieSpielfigur = new Spielfigur();
 		
-		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, dieDoodleGUI);
+		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, this);
 		dieDoodleSteuerung.erzeugePlattformen();
 		
 		dasDoodlePanel = dieDoodleSteuerung.getPanel();
@@ -105,10 +110,7 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		this.addKeyListener(this);
 		
 	}
-	public void zeigeVerloren() {
-		
-		
-	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
