@@ -78,63 +78,45 @@ public class DoodleSteuerung {
 	    
 	}
 	
+	boolean pruefePlattformen(int pX, int pY) {
+		for(int j = 0; j < diePlattformen.size(); j++) {
+			int x = diePlattformen.get(j).gibX();
+			int y = diePlattformen.get(j).gibY();
+			System.out.println("test");
+
+			 if(!(pY > y + 32)) {
+				 if(!(pY < y -32)) {
+					 if(!(pX > x + 110)) {
+						 if(!(pX < x -110)) {
+							 return true;
+						 }
+					 }
+				 }
+			 }
+		}
+		return false;
+	}
+	
 	
 	public void erzeugePlattformen() {
 		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();
 		
 		int random = ran.nextInt(3 - 1) + 1;
 		
-			for(int i = 0; i < random; i++) {
-				int typ = 0;
+			for(int i = 0; i < random; i++) {			
+						
+				do {
+					dieDoodlePlattform = new DoodlePlattform();
+					 
+				} while(pruefePlattformen(dieDoodlePlattform.gibX(), dieDoodlePlattform.gibY()));
 				
-				if(typ == 0 || typ == 1 || typ == 2) {
-					DoodlePlattform dieDoodlePlattform = new DoodlePlattform();
-					int pY = dieDoodlePlattform.gibY();
-					int pX = dieDoodlePlattform.gibY();
-					
-					for(int j = 0; j < zPlattformen.size(); j++) {
-						int x = zPlattformen.get(j).gibX();
-						int y = zPlattformen.get(j).gibY();
-						if(!((pY > y + 32) && !(pY < y - 10))) {
-							if(!((pX > x + 110) && !(pX < x - 20))) {
-								erzeugePlattformen();
-								return;
-							}
-						}
-					}
-					/*
-					for(int j = 0; j < diePlattformen.size(); j++) {
-						int x = diePlattformen.get(j).gibX();
-						int y = diePlattformen.get(j).gibY();
-						if(!((pY > y + 32) && !(pY < y - 10))) {
-							System.out.println((pY > y + 32) + " " + pY + " " + y);
-							if(!((pX > x + 110) && !(pX < x - 20))) {
-								//----
-								erzeugePlattformen();
-								return;
-							}
-						}
-					}
-					*/
-					
-
-					zPlattformen.add(dieDoodlePlattform);
-					
-				}
-				else if(typ == 3) {
-					
-				}
-				else if(typ == 4) {
-					
-				}
-			}
-			for(int i = 0; i < zPlattformen.size(); i++) {
-				diePlattformen.add(zPlattformen.get(i));
-			}
+				diePlattformen.add(dieDoodlePlattform);
+				
 			//dasDoodlePanel.repaint();
 
 				
-	}
+			}
+		}
 
 	
 }
