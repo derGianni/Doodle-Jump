@@ -87,16 +87,37 @@ public class DoodleGUI extends JFrame implements ActionListener,  KeyListener {
 		contentPane.add(dasDoodlePanel, BorderLayout.CENTER);
 		
 		JButton btnStart = new JButton("Start");
-		btnStart.setBounds(203, 400, 80, 40);
+		//btnStart.setBounds(203, 400, 80, 40);
 		btnStart.setFocusable(false);
 		
-		contentPane.add(btnStart);
+		contentPane.add(btnStart, BorderLayout.SOUTH);
 		
 		setContentPane(contentPane);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tim.start();
-				contentPane.remove(btnStart);
+				//contentPane.remove(btnStart);
+			
+		
+	
+				
+			}
+		});
+		JButton btnPause = new JButton("Pause");
+		btnPause.setBounds(203, 450, 80, 40);
+		btnPause.setFocusable(false);
+		btnPause.setVisible(true);
+		contentPane.add(btnPause);
+		
+		setContentPane(contentPane);
+		btnPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tim.stop();
+			
+			
+		
+	
+				
 			}
 		});
 		
