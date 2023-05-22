@@ -5,4 +5,6 @@ public class DoodlePlattform extends Plattform{
 	DoodlePlattform(){
 		
 	}
+	
+	
 }

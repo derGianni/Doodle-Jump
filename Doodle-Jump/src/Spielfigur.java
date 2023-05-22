@@ -26,7 +26,7 @@ public class Spielfigur {
 		bewegungX = pBewegung;
 	}
 	
-	public void bewege(ArrayList<DoodlePlattform> pDiePlattformen) {
+	public void bewege(ArrayList<Plattform> pDiePlattformen) {
 		//Bewegungen in X-Richtung
 		if (bewegungX == 1) {
 			posX = posX + 5;
@@ -46,6 +46,9 @@ public class Spielfigur {
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
 			if(pDiePlattformen.get(i).pruefeBeruehrt(posX, posY, 66, bewegungY)) {
 				bewegungY = 10;
+				if(pDiePlattformen.get(i) instanceof DoodlePlattformBrech) {
+					pDiePlattformen.remove(i);
+				}
 			}
 		}
 		

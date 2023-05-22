@@ -13,7 +13,9 @@ public class DoodlePanel extends JPanel{
 	private BufferedImage hintergrund;
 	private BufferedImage spielfigur;
 	private BufferedImage plattform_1;
-	private ArrayList<DoodlePlattform> diePlattformen;
+	private BufferedImage plattform_2;
+	private BufferedImage plattform_3;
+	private ArrayList<Plattform> diePlattformen;
 	private Spielfigur dieSpielfigur;
 	private int punkte = 0;
 	
@@ -25,6 +27,8 @@ public class DoodlePanel extends JPanel{
 			hintergrund = ImageIO.read(getClass().getResource("img/Hintergrund.png"));
 			spielfigur = ImageIO.read(getClass().getResource("img/Figur_Rechts.png"));
 			plattform_1 = ImageIO.read(getClass().getResource("img/Plattform_1.png"));
+			plattform_2 = ImageIO.read(getClass().getResource("img/Plattform_2.png"));
+			plattform_3 = ImageIO.read(getClass().getResource("img/Plattform_3.png"));
 		} catch (IOException e) {
 			System.out.println("Fehler beim Laden der Bilder!");
 			e.printStackTrace();
@@ -32,7 +36,7 @@ public class DoodlePanel extends JPanel{
 		
 	}
 	
-	public void setzePlattformen(ArrayList<DoodlePlattform> pF)
+	public void setzePlattformen(ArrayList<Plattform> pF)
 	{
 		diePlattformen = pF;
 	}
@@ -54,8 +58,15 @@ public class DoodlePanel extends JPanel{
 		
 		try{
 			for(int i = 0; i < diePlattformen.size(); i++) {
-				DoodlePlattform diePlattform = diePlattformen.get(i);
-				g.drawImage(plattform_1, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
+				Plattform diePlattform = diePlattformen.get(i);
+				if(diePlattform instanceof DoodlePlattform) {
+					g.drawImage(plattform_1, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
+				}
+				else if(diePlattform instanceof DoodlePlattformBrech) {
+					g.drawImage(plattform_2, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
+				}
+				else if(diePlattform instanceof DoodlePlattformBrech2)
+					g.drawImage(plattform_3, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
 			}
 		}
 		catch(Exception e) {

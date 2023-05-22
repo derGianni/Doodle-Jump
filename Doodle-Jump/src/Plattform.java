@@ -30,6 +30,7 @@ public abstract class Plattform {
 	}
 	
 	
+	
 	public boolean pruefeBeruehrt(int pPosX, int pPosY, int pBreit, double pBewegungY) {
 		
 		if(pPosX > posX) {

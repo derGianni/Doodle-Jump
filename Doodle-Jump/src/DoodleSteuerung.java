@@ -8,12 +8,11 @@ import javax.swing.UIManager;
 
 public class DoodleSteuerung {
 	private DoodleSteuerung dieDoodleSteuerung;
-	private DoodlePlattform dieDoodlePlattform;
 	private Spielfigur dieSpielfigur;
 	private DoodlePanel dasDoodlePanel;
 	private JPanel contentPane;
 	private DoodleGUI dieDoodleGUI;
-	private ArrayList<DoodlePlattform> diePlattformen = new ArrayList<DoodlePlattform>();
+	private ArrayList<Plattform> diePlattformen = new ArrayList<Plattform>();
 	static Random ran = new Random();
 	int punkte = 0;
 	
@@ -56,7 +55,7 @@ public class DoodleSteuerung {
 	public void bewegePlattformen(int pUeberschuss) {
 		int minPosGruppe = 0;
 		for(int i = 0; i<diePlattformen.size(); i++) {
-			DoodlePlattform plattform = diePlattformen.get(i);
+			Plattform plattform = diePlattformen.get(i);
 			plattform.bewegeRunter(pUeberschuss);
 			
 			if(plattform.gibPosGruppe() < minPosGruppe) {
@@ -71,7 +70,7 @@ public class DoodleSteuerung {
 		}
 	}
 	public void pruefeVerloren() {
-	    if(dieSpielfigur.gibY() > 950) {
+	    if(dieSpielfigur.gibY() > 755) {
 	        System.out.println("Verloren");
 	        dieDoodleGUI.verloren();
 	      }
@@ -99,18 +98,31 @@ public class DoodleSteuerung {
 	
 	
 	public void erzeugePlattformen() {
-		ArrayList<DoodlePlattform> zPlattformen = new ArrayList<DoodlePlattform>();
+		ArrayList<Plattform> zPlattformen = new ArrayList<Plattform>();
 		
-		int random = ran.nextInt(3 - 1) + 1;
+		int anzahl = ran.nextInt(3 - 1) + 1;
+		Plattform diePlattform;
 		
-			for(int i = 0; i < random; i++) {			
-						
-				do {
-					dieDoodlePlattform = new DoodlePlattform();
-					 
-				} while(pruefePlattformen(dieDoodlePlattform.gibX(), dieDoodlePlattform.gibY()));
+			for(int i = 0; i < anzahl; i++) {
 				
-				diePlattformen.add(dieDoodlePlattform);
+				
+				do {
+					int typ = ran.nextInt(4 - 1) + 1;
+					switch(typ) {
+					case 1:
+						diePlattform = new DoodlePlattformBrech();
+					break;
+					case 2:
+						diePlattform = new DoodlePlattformBrech2();
+					break;
+					default:
+						diePlattform = new DoodlePlattform();
+					break;
+					}
+					 
+				} while(pruefePlattformen(diePlattform.gibX(), diePlattform.gibY()));
+				
+				diePlattformen.add(diePlattform);
 				
 			//dasDoodlePanel.repaint();
 
