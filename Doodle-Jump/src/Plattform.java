@@ -35,7 +35,6 @@ public abstract class Plattform {
 		
 		if(pPosX > posX) {
 			if(pPosX + 18 < posX + 90) {
-				
 			if((pPosY + 75) > posY) {
 				if(pPosY + 75 < posY + (pBewegungY * -1)) {
 					

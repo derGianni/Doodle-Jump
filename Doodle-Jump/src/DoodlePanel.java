@@ -65,7 +65,7 @@ public class DoodlePanel extends JPanel{
 				else if(diePlattform instanceof DoodlePlattformBrech) {
 					g.drawImage(plattform_2, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
 				}
-				else if(diePlattform instanceof DoodlePlattformBrech2)
+				else if(diePlattform instanceof DoodlePlattformBeweg)
 					g.drawImage(plattform_3, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
 			}
 		}
