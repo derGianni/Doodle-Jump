@@ -17,6 +17,7 @@ public class DoodleSteuerung {
 	int punkte = 0;
 	
 	
+	
 	public DoodleSteuerung(Spielfigur pSpielfigur,  DoodleGUI pDieDoodleGUI) {
 		dieSpielfigur = pSpielfigur;
 		dasDoodlePanel = new DoodlePanel();
@@ -68,7 +69,11 @@ public class DoodleSteuerung {
 		if(minPosGruppe > 99) {
 			erzeugePlattformen();
 		}
+		loeschePlattformen();
 	}
+	
+
+	
 	public void pruefeVerloren() {
 	    if(dieSpielfigur.gibY() > 755) {
 	        System.out.println("Verloren");
@@ -95,8 +100,15 @@ public class DoodleSteuerung {
 		}
 		return false;
 	}
-	
-	
+	void loeschePlattformen() {
+		for(int j = 0; j< diePlattformen.size();j++) {
+			
+			if(diePlattformen.get(j).gibY() >800){
+				diePlattformen.remove(j);
+			
+			}
+	}
+	}
 	public void erzeugePlattformen() {
 		ArrayList<Plattform> zPlattformen = new ArrayList<Plattform>();
 		
