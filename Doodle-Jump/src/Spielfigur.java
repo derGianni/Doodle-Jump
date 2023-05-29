@@ -21,7 +21,7 @@ public class Spielfigur {
 		posY = pPosY;
 	}
 	
-	public void setBewege(int pBewegung) {
+	public void setzeBewegung(int pBewegung) {
 		// 0 = Keine 1 = Links 2 = Rechts
 		bewegungX = pBewegung;
 	}
@@ -44,10 +44,16 @@ public class Spielfigur {
 		//Bewegungen in Y-Richtung
 		
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
-			if(pDiePlattformen.get(i).pruefeBeruehrt(posX, posY, 66, bewegungY)) {
+			Plattform diePlattform = pDiePlattformen.get(i);
+			if(diePlattform.pruefeBeruehrt(posX, posY, 66, bewegungY)) {
 				bewegungY = 10;
-				if(pDiePlattformen.get(i) instanceof DoodlePlattformBrech) {
+				if(diePlattform instanceof DoodlePlattformBrech) {
 					pDiePlattformen.remove(i);
+				}
+				Item dasItem = diePlattform.gibItem();
+				if(dasItem != null) {
+					dasItem.setzeEffekt(this);
+					diePlattform.loescheItem();
 				}
 			}
 		}

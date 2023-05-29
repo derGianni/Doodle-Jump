@@ -6,10 +6,23 @@ public abstract class Plattform {
 	static Random ran = new Random();
 	int posGruppe = 0;
 	int geschwindigkeit = 1;
+	Item dasItem;
 	public Plattform() {
 			posX = ran.nextInt(383 - 1) + 1;
 			posY = ran.nextInt(100 - 1) + 1;
 			posY = posY * -1;
+			int item = ran.nextInt(10 - 1) + 1;
+			switch (item){
+				case 1:
+					dasItem = new DoodleItemFeuerloescher();
+				break;
+				case 2:
+					dasItem = new DoodleItemFeuerloescher();
+				break;
+				case 3:
+					dasItem = new DoodleItemFeuerloescher();
+				break;
+			}
 	}
 	
 	public int gibX() {
@@ -24,12 +37,20 @@ public abstract class Plattform {
 		return posGruppe;
 	}
 	
+	public Item gibItem() {
+		return dasItem;
+	}
+	
+	public void loescheItem() {
+		dasItem = null;
+	}
+	
 	public void bewegeRunter(int pWert) {
 		posY = posY + pWert;
 		posGruppe = posGruppe + pWert;
 	}
 	
-	
+
 	
 	public boolean pruefeBeruehrt(int pPosX, int pPosY, int pBreit, double pBewegungY) {
 		

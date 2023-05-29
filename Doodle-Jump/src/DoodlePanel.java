@@ -16,11 +16,15 @@ public class DoodlePanel extends JPanel{
 	private BufferedImage plattform_2;
 	private BufferedImage plattform_3;
 	private ArrayList<Plattform> diePlattformen;
+	private ArrayList<Item> dieItems;
 	private Spielfigur dieSpielfigur;
 	private int punkte = 0;
 	
-	public DoodlePanel() {
-		super();
+	public DoodlePanel(ArrayList<Plattform> pF, Spielfigur pDieSpielfigur, ArrayList<Item> pI) {
+		
+		diePlattformen = pF;
+		dieSpielfigur = pDieSpielfigur;
+		dieItems = pI;
 		
 		
 		try {
@@ -36,13 +40,7 @@ public class DoodlePanel extends JPanel{
 		
 	}
 	
-	public void setzePlattformen(ArrayList<Plattform> pF)
-	{
-		diePlattformen = pF;
-	}
-	public void setzeSpielfigur(Spielfigur pDieSpielfigur) {
-		dieSpielfigur = pDieSpielfigur;
-	}
+	
 	public void setzePunkte(int pPunkte) {
 		punkte = pPunkte;
 	}
@@ -67,22 +65,30 @@ public class DoodlePanel extends JPanel{
 				}
 				else if(diePlattform instanceof DoodlePlattformBeweg)
 					g.drawImage(plattform_3, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
+				Item dasItem = diePlattform.gibItem();
+				if (dasItem != null){
+					if(dasItem instanceof DoodleItemFeuerloescher) {
+						g.drawImage(spielfigur, diePlattform.gibX(), diePlattform.gibY(), 30,30,null, null);
+					}
+				}
 			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 		
+		
+		
 		String sPunkte = String.valueOf(punkte);
-		int länge  = sPunkte.length();
-		char[] punkteZeichnen = new char[länge];
+		int lange  = sPunkte.length();
+		char[] punkteZeichnen = new char[lange];
 		for(int i = 0; i < sPunkte.length(); i++) {
 			punkteZeichnen[i] = sPunkte.charAt(i);
 		}
 		g.setColor(Color.LIGHT_GRAY);
-		Font font = new Font("Arial Black", Font.PLAIN, 25); // Hier wird die Schriftart "Arial" mit einer Größe von 20pt erstellt.
+		Font font = new Font("Arial Black", Font.PLAIN, 25); // Hier wird die Schriftart "Arial" mit einer Grï¿½ï¿½e von 20pt erstellt.
         g.setFont(font);
-		g.drawChars(punkteZeichnen, 0, länge, 20, 30);
+		g.drawChars(punkteZeichnen, 0, lange, 20, 30);
 		
 		
 		g.drawImage(spielfigur, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);

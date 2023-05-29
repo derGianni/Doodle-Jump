@@ -68,7 +68,7 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
-		// Das panel hat die Größe 531 x 1062
+		// Das panel hat die Grï¿½ï¿½e 531 x 1062
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -130,10 +130,10 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		switch (e.getKeyCode()) {
 
 		case 39:
-			dieSpielfigur.setBewege(1);
+			dieSpielfigur.setzeBewegung(1);
 			break;
 		case 37:
-			dieSpielfigur.setBewege(2);
+			dieSpielfigur.setzeBewegung(2);
 			break;
 		case 27:
 			if (tim.isRunning()) {
@@ -150,7 +150,7 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		dieSpielfigur.setBewege(0);
+		dieSpielfigur.setzeBewegung(0);
 
 	}
 
