@@ -11,16 +11,13 @@ public abstract class Plattform {
 			posX = ran.nextInt(383 - 1) + 1;
 			posY = ran.nextInt(100 - 1) + 1;
 			posY = posY * -1;
-			int item = ran.nextInt(10 - 1) + 1;
+			int item = ran.nextInt(20 - 1) + 1;
 			switch (item){
 				case 1:
 					dasItem = new DoodleItemFeuerloescher();
 				break;
 				case 2:
-					dasItem = new DoodleItemFeuerloescher();
-				break;
-				case 3:
-					dasItem = new DoodleItemFeuerloescher();
+					dasItem = new DoodleItemSprungschuh();
 				break;
 			}
 	}

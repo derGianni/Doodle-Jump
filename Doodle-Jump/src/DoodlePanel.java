@@ -12,6 +12,10 @@ import java.util.Random;
 public class DoodlePanel extends JPanel{
 	private BufferedImage hintergrund;
 	private BufferedImage spielfigur;
+	private BufferedImage spielfigurMitFeuerloescher;
+	private BufferedImage spielfigurMitSprungschuhe;
+	private BufferedImage feuerloescher;
+	private BufferedImage sprungschuhe;
 	private BufferedImage plattform_1;
 	private BufferedImage plattform_2;
 	private BufferedImage plattform_3;
@@ -30,6 +34,10 @@ public class DoodlePanel extends JPanel{
 		try {
 			hintergrund = ImageIO.read(getClass().getResource("img/Hintergrund.png"));
 			spielfigur = ImageIO.read(getClass().getResource("img/Figur_Rechts.png"));
+			spielfigurMitFeuerloescher = ImageIO.read(getClass().getResource("img/SpielfigurMitFeuerloescher.png"));
+			spielfigurMitSprungschuhe = ImageIO.read(getClass().getResource("img/SpielfigurMitSprungschuhe.png"));
+			feuerloescher = ImageIO.read(getClass().getResource("img/Feuerloescher.png"));
+			sprungschuhe = ImageIO.read(getClass().getResource("img/Sprungschuhe.png"));
 			plattform_1 = ImageIO.read(getClass().getResource("img/Plattform_1.png"));
 			plattform_2 = ImageIO.read(getClass().getResource("img/Plattform_2.png"));
 			plattform_3 = ImageIO.read(getClass().getResource("img/Plattform_3.png"));
@@ -68,8 +76,12 @@ public class DoodlePanel extends JPanel{
 				Item dasItem = diePlattform.gibItem();
 				if (dasItem != null){
 					if(dasItem instanceof DoodleItemFeuerloescher) {
-						g.drawImage(spielfigur, diePlattform.gibX(), diePlattform.gibY(), 30,30,null, null);
+						g.drawImage(feuerloescher, diePlattform.gibX() + 20, diePlattform.gibY() - 45, 40,50,null, null);
 					}
+					else if(dasItem instanceof DoodleItemSprungschuh) {
+						g.drawImage(sprungschuhe, diePlattform.gibX() + 30, diePlattform.gibY() - 25, 30,30,null, null);
+					}
+				
 				}
 			}
 		}
@@ -90,8 +102,15 @@ public class DoodlePanel extends JPanel{
         g.setFont(font);
 		g.drawChars(punkteZeichnen, 0, lange, 20, 30);
 		
-		
-		g.drawImage(spielfigur, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
+		if(dieSpielfigur.gibEffekt() == 0) {
+			g.drawImage(spielfigur, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);			
+		}
+		else if(dieSpielfigur.gibEffekt() == 1) {
+			g.drawImage(spielfigurMitFeuerloescher, dieSpielfigur.gibX() - 11, dieSpielfigur.gibY() - 6, 88, 85, null, null);
+		}
+		else if(dieSpielfigur.gibEffekt() == 2) {
+			g.drawImage(spielfigurMitSprungschuhe, dieSpielfigur.gibX() - 4, dieSpielfigur.gibY(), 76, 83, null, null);
+		}
 		//g.drawImage(plattform_1, 0, 0, 125, 32, null, null);
 	}
 

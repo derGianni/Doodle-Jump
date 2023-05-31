@@ -65,6 +65,9 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 	 * Create the frame.
 	 */
 	public DoodleGUI() {
+		
+		
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -79,7 +82,7 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 
 		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, this);
 		dieDoodleSteuerung.erzeugePlattformen();
-
+		
 		dasDoodlePanel = dieDoodleSteuerung.getPanel();
 		contentPane.add(dasDoodlePanel, BorderLayout.CENTER);
 
@@ -107,7 +110,6 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		dieDoodleSteuerung.erzeugePlattformen();
 
 		tim = new Timer(10, this);
-		dieDoodleSteuerung.verarbeiteTimerEvent();
 		this.addKeyListener(this);
 
 	}
@@ -130,10 +132,10 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		switch (e.getKeyCode()) {
 
 		case 39:
-			dieSpielfigur.setzeBewegung(1);
+			dieSpielfigur.setzeBewegungX(1);
 			break;
 		case 37:
-			dieSpielfigur.setzeBewegung(2);
+			dieSpielfigur.setzeBewegungX(2);
 			break;
 		case 27:
 			if (tim.isRunning()) {
@@ -150,7 +152,7 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		dieSpielfigur.setzeBewegung(0);
+		dieSpielfigur.setzeBewegungX(0);
 
 	}
 
