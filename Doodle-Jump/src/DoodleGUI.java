@@ -48,7 +48,7 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 	public void verloren() {
 		UIManager.put("OptionPane.yesButtonText", "Neustart");
 		UIManager.put("OptionPane.noButtonText", "Schliessen");
-		int wahl = JOptionPane.showConfirmDialog(contentPane, "Verloren", "verloren", JOptionPane.YES_NO_OPTION);
+		int wahl = JOptionPane.showConfirmDialog(contentPane, "Leider verloren \nErreichte Punkte: " +  dieDoodleSteuerung.getPunkte() + " \nHighscore: "+ dieDoodleSteuerung.highscore(), "Verloren", JOptionPane.YES_NO_OPTION);
 		if (wahl == JOptionPane.YES_OPTION) {
 
 			tim.stop();
@@ -66,8 +66,6 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 	 */
 	public DoodleGUI() {
 		
-		
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
@@ -78,7 +76,7 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		dieSpielfigur = new Spielfigur();
+		dieSpielfigur = new Spielfigur(this);
 
 		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, this);
 		dieDoodleSteuerung.erzeugePlattformen();
@@ -146,13 +144,29 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 			}
 
 			break;
+		case 87:
+			dieSpielfigur.setzeEffekt(4);
+			break;
+		case 65:
+			dieSpielfigur.setzeEffekt(3);
+			break;
+		case 68:
+			dieSpielfigur.setzeEffekt(5);	
+			break;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		dieSpielfigur.setzeBewegungX(0);
+		if(e.getKeyCode() == 39 || e.getKeyCode() == 37) {
+			dieSpielfigur.setzeBewegungX(0);
+		}
+		else {
+			if(dieSpielfigur.gibEffekt() == 3 || dieSpielfigur.gibEffekt() == 4 || dieSpielfigur.gibEffekt() == 5) {
+				dieSpielfigur.setzeEffekt(0);
+			}
+		}
 
 	}
 

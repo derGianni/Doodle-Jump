@@ -7,6 +7,7 @@ public abstract class Plattform {
 	int posGruppe = 0;
 	int geschwindigkeit = 1;
 	Item dasItem;
+	Monster dasMonster;
 	public Plattform() {
 			posX = ran.nextInt(383 - 1) + 1;
 			posY = ran.nextInt(100 - 1) + 1;
@@ -18,6 +19,9 @@ public abstract class Plattform {
 				break;
 				case 2:
 					dasItem = new DoodleItemSprungschuh();
+				break;
+				case 3:
+					dasMonster = new Monster();
 				break;
 			}
 	}
@@ -38,8 +42,16 @@ public abstract class Plattform {
 		return dasItem;
 	}
 	
+	public Monster gibMonster() {
+		return dasMonster;
+	}
+	
 	public void loescheItem() {
 		dasItem = null;
+	}
+	
+	public void loescheGegner() {
+		dasMonster = null;
 	}
 	
 	public void bewegeRunter(int pWert) {

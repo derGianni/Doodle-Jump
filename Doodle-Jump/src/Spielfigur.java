@@ -14,7 +14,11 @@ public class Spielfigur {
 	int timer = 0;
 	double geschwindigkeitY = 20;
 	double beschleunigung = 0.2;
-	
+	DoodleGUI dieDoodleGUI;
+	 
+	Spielfigur(DoodleGUI pDieDoodleGUI){
+		dieDoodleGUI = pDieDoodleGUI;
+	}
 	public int gibX() {
 		return posX;
 	}
@@ -40,7 +44,7 @@ public class Spielfigur {
 	}
 	
 	public void setzeEffekt(int pEffekt) {
-		if(pEffekt >= 0 && pEffekt <= 3) {
+		if(pEffekt >= 0 && pEffekt <= 5) {
 			effekt = pEffekt;
 		}
 	}
@@ -75,6 +79,10 @@ public class Spielfigur {
 						dasItem.setzeEffekt(this);
 						diePlattform.loescheItem();
 					}
+				}
+				Monster dasMonster = diePlattform.gibMonster();
+				if(dasMonster != null) {
+					dieDoodleGUI.verloren(); 
 				}
 			}
 		}

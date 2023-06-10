@@ -4,6 +4,13 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
 
 
 public class DoodleSteuerung {
@@ -14,13 +21,17 @@ public class DoodleSteuerung {
 	private DoodleGUI dieDoodleGUI;
 	private ArrayList<Plattform> diePlattformen = new ArrayList<Plattform>();
 	private ArrayList<Item> dieItems = new ArrayList<Item>();
+	private ArrayList<Schuss> dieSchuesse = new ArrayList<Schuss>();
 	static Random ran = new Random();
-	int punkte = 0;
+	int punkte = 100;
+	int abstand = 100;
+	int schussTimer = 101;
+
 	
 	
 	public DoodleSteuerung(Spielfigur pSpielfigur,  DoodleGUI pDieDoodleGUI) {
 		dieSpielfigur = pSpielfigur;
-		dasDoodlePanel = new DoodlePanel(diePlattformen, dieSpielfigur, dieItems);
+		dasDoodlePanel = new DoodlePanel(diePlattformen, dieSpielfigur, dieItems, dieSchuesse);
 		dieDoodleGUI = pDieDoodleGUI;
 		
 	}
@@ -30,14 +41,18 @@ public class DoodleSteuerung {
 		return this.dasDoodlePanel;
 	}
 	
+	public int getPunkte() {
+		return punkte/100;
+	}
+	
 	public void verarbeiteTimerEvent() {
 		
 		dieSpielfigur.bewege(diePlattformen);
 		
-		if(dieSpielfigur.gibY() < 100) {
-			int ueberschuss = 100 - dieSpielfigur.gibY();
+		if(dieSpielfigur.gibY() < 350) {
+			int ueberschuss = 350 - dieSpielfigur.gibY();
 			bewegePlattformen(ueberschuss);
-			dieSpielfigur.setzeY(100);
+			dieSpielfigur.setzeY(350);
 			pruefePunktestand(ueberschuss);
 		}
 		pruefeVerloren();
@@ -50,6 +65,37 @@ public class DoodleSteuerung {
 				diePlattform.bewege();
 			}
 		}
+		if(dieSpielfigur.gibEffekt() == 3) {
+			if(schussTimer > 10) {
+				Schuss derSchuss = new Schuss(1, dieSpielfigur.gibX(), dieSpielfigur.gibY(), diePlattformen);
+				dieSchuesse.add(derSchuss);
+				schussTimer = 0;
+			}
+		}
+		else if(dieSpielfigur.gibEffekt() == 4) {
+			if(schussTimer > 10) {
+				Schuss derSchuss = new Schuss(2, dieSpielfigur.gibX(), dieSpielfigur.gibY(), diePlattformen);
+				dieSchuesse.add(derSchuss);
+				schussTimer = 0;
+			}
+		}
+		else if(dieSpielfigur.gibEffekt() == 5) {
+			if(schussTimer > 10) {
+				Schuss derSchuss = new Schuss(3, dieSpielfigur.gibX(), dieSpielfigur.gibY(), diePlattformen);
+				dieSchuesse.add(derSchuss);
+				schussTimer = 0;
+			}
+		}
+		schussTimer++;
+		for(int i = 0; i < dieSchuesse.size(); i++) {
+			Schuss derSchuss = dieSchuesse.get(i);
+			derSchuss.bewege();
+			if(derSchuss.gibPosY() < 0 || derSchuss.gibPosX() < 0 || derSchuss.gibPosX() > 531) {
+				dieSchuesse.remove(i);
+			}
+		}
+		
+		
 	}
 	
 	public void pruefePunktestand(int ueberschuss) {
@@ -70,14 +116,18 @@ public class DoodleSteuerung {
 				minPosGruppe = plattform.gibPosGruppe();
 			}
 		}
-		if(minPosGruppe > 99) {
+		
+		if(punkte >= 10000 && punkte <= 20000) {
+			abstand = punkte/100;
+		}
+
+		if(minPosGruppe >= abstand) {
 			erzeugePlattformen();
 		}
 		loeschePlattformen();
 	}
 	public void pruefeVerloren() {
 	    if(dieSpielfigur.gibY() > 755) {
-	        System.out.println("Verloren");
 	        dieDoodleGUI.verloren();
 	      }
 	    
@@ -155,6 +205,53 @@ public class DoodleSteuerung {
 				
 			}
 		}
+	
+	public String highscore() {
+		int pPunkte = punkte/100;
+		int highscore = 0;
+		
+		File file = new File("highscore");
+        if (!file.exists()) {
+            try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.err.println("Fehler beim erstellen der Highscore-Datei");
+	            return "Fehler beim schreiben des Highscors";
+			}
+        }
+		
+		try {
+            BufferedReader reader = new BufferedReader(new FileReader("highscore"));
+            String line = reader.readLine();
+            try {
+            	highscore = Integer.parseInt(line);
+            }
+            catch(NumberFormatException e) {
+            	System.err.println("Ungültiger Wert in der Highscore-Datei: " + line);
+            	highscore = 0;
+            }
+           
+            reader.close();
+        } catch (IOException e) {
+            System.err.println("Fehler beim Lesen der Highscore-Datei: " + e.getMessage());
+        }
+		if(pPunkte > highscore) {
+			try {
+	            BufferedWriter writer = new BufferedWriter(new FileWriter("highscore"));
+	            writer.write(String.valueOf(pPunkte));
+	            writer.close();
+	            return String.valueOf(pPunkte);
+	            
+	        } catch (IOException e) {
+	            System.err.println("Fehler beim Schreiben in die Datei: " + e.getMessage());
+	            return "Fehler beim lesen des Highscors";
+	        }
+		}
+		else {
+			return String.valueOf(highscore);
+		}
+	}
 
 	
 }

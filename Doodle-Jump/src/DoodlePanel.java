@@ -14,21 +14,29 @@ public class DoodlePanel extends JPanel{
 	private BufferedImage spielfigur;
 	private BufferedImage spielfigurMitFeuerloescher;
 	private BufferedImage spielfigurMitSprungschuhe;
+	private BufferedImage spielfigurSchussLinks;
+	private BufferedImage spielfigurSchussGerade;
+	private BufferedImage spielfigurSchussRechts;
 	private BufferedImage feuerloescher;
 	private BufferedImage sprungschuhe;
 	private BufferedImage plattform_1;
 	private BufferedImage plattform_2;
 	private BufferedImage plattform_3;
+	private BufferedImage gegner_1;
+	private BufferedImage gegner_2;
+	private BufferedImage gegner_3;
 	private ArrayList<Plattform> diePlattformen;
 	private ArrayList<Item> dieItems;
+	private ArrayList<Schuss> dieSchuesse;
 	private Spielfigur dieSpielfigur;
 	private int punkte = 0;
 	
-	public DoodlePanel(ArrayList<Plattform> pF, Spielfigur pDieSpielfigur, ArrayList<Item> pI) {
+	public DoodlePanel(ArrayList<Plattform> pF, Spielfigur pDieSpielfigur, ArrayList<Item> pI, ArrayList<Schuss> pS) {
 		
 		diePlattformen = pF;
 		dieSpielfigur = pDieSpielfigur;
 		dieItems = pI;
+		dieSchuesse = pS;
 		
 		
 		try {
@@ -36,11 +44,18 @@ public class DoodlePanel extends JPanel{
 			spielfigur = ImageIO.read(getClass().getResource("img/Figur_Rechts.png"));
 			spielfigurMitFeuerloescher = ImageIO.read(getClass().getResource("img/SpielfigurMitFeuerloescher.png"));
 			spielfigurMitSprungschuhe = ImageIO.read(getClass().getResource("img/SpielfigurMitSprungschuhe.png"));
+			spielfigurSchussLinks = ImageIO.read(getClass().getResource("img/SpielfigurSchussLinks.png"));
+			spielfigurSchussGerade = ImageIO.read(getClass().getResource("img/SpielfigurSchussGerade.png"));
+			spielfigurSchussRechts = ImageIO.read(getClass().getResource("img/SpielfigurSchussRechts.png"));
 			feuerloescher = ImageIO.read(getClass().getResource("img/Feuerloescher.png"));
 			sprungschuhe = ImageIO.read(getClass().getResource("img/Sprungschuhe.png"));
 			plattform_1 = ImageIO.read(getClass().getResource("img/Plattform_1.png"));
 			plattform_2 = ImageIO.read(getClass().getResource("img/Plattform_2.png"));
 			plattform_3 = ImageIO.read(getClass().getResource("img/Plattform_3.png"));
+			gegner_1 = ImageIO.read(getClass().getResource("img/Gegner1.png"));
+			gegner_2 = ImageIO.read(getClass().getResource("img/Gegner2.png"));
+			gegner_3 = ImageIO.read(getClass().getResource("img/Gegner3.png"));
+		
 		} catch (IOException e) {
 			System.out.println("Fehler beim Laden der Bilder!");
 			e.printStackTrace();
@@ -81,7 +96,18 @@ public class DoodlePanel extends JPanel{
 					else if(dasItem instanceof DoodleItemSprungschuh) {
 						g.drawImage(sprungschuhe, diePlattform.gibX() + 30, diePlattform.gibY() - 25, 30,30,null, null);
 					}
-				
+				}
+				Monster dasMonster = diePlattform.gibMonster();
+				if(dasMonster != null) {
+					if(dasMonster.gibTyp() == 0) {
+						g.drawImage(gegner_1, diePlattform.gibX() + 18, diePlattform.gibY() - 25, 53,30,null, null);
+					}
+					else if(dasMonster.gibTyp() == 1) {
+						g.drawImage(gegner_2, diePlattform.gibX() + 18, diePlattform.gibY() - 25, 53,30,null, null);
+					}
+					else if(dasMonster.gibTyp() == 2) {
+						g.drawImage(gegner_3, diePlattform.gibX() + 18, diePlattform.gibY() - 25, 53,30,null, null);
+					}
 				}
 			}
 		}
@@ -111,7 +137,21 @@ public class DoodlePanel extends JPanel{
 		else if(dieSpielfigur.gibEffekt() == 2) {
 			g.drawImage(spielfigurMitSprungschuhe, dieSpielfigur.gibX() - 4, dieSpielfigur.gibY(), 76, 83, null, null);
 		}
+		else if(dieSpielfigur.gibEffekt() == 3) {
+			g.drawImage(spielfigurSchussLinks, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
+		}
+		else if(dieSpielfigur.gibEffekt() == 4) {
+			g.drawImage(spielfigurSchussGerade, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 120, 150, null, null);
+		}
+		else if(dieSpielfigur.gibEffekt() == 5) {
+			g.drawImage(spielfigurSchussRechts, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
+		}
 		//g.drawImage(plattform_1, 0, 0, 125, 32, null, null);
+		
+		for(int i = 0; i < dieSchuesse.size(); i++) {
+			Schuss derSchuss = dieSchuesse.get(i);
+			g.drawImage(spielfigurSchussRechts, derSchuss.gibPosX(), derSchuss.gibPosY(), 66, 75, null, null);
+		}
 	}
 
 }
