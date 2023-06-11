@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class DoodlePanel extends JPanel{
+	//Variablen
 	private BufferedImage hintergrund;
 	private BufferedImage spielfigur;
 	private BufferedImage spielfigurMitFeuerloescher;
@@ -32,14 +33,17 @@ public class DoodlePanel extends JPanel{
 	private Spielfigur dieSpielfigur;
 	private int punkte = 0;
 	
+	//Konstruktor
 	public DoodlePanel(ArrayList<Plattform> pF, Spielfigur pDieSpielfigur, ArrayList<Item> pI, ArrayList<Schuss> pS) {
-		
+		//Referenzen werden gesetzt
+		//Gian Luca
 		diePlattformen = pF;
 		dieSpielfigur = pDieSpielfigur;
 		dieItems = pI;
 		dieSchuesse = pS;
 		
-		
+		//Bilder werden geladen
+		//Marcel
 		try {
 			hintergrund = ImageIO.read(getClass().getResource("img/Hintergrund.png"));
 			spielfigur = ImageIO.read(getClass().getResource("img/Figur_Rechts.png"));
@@ -65,20 +69,21 @@ public class DoodlePanel extends JPanel{
 		
 	}
 	
-	
+	//Referenz auf die Punkte wird gesetzt
+	//Lorenz
 	public void setzePunkte(int pPunkte) {
 		punkte = pPunkte;
 	}
 	
-	
-	
-	
+	//Alle das panel wird gezeichnet
+	//Gian Luca
 	@Override
 	protected void paintComponent(Graphics g) {
-		//g.drawImage(hintergrund, 0, 0, null);
-		//g.drawImage(spielfigur, 828, 800, , null);
+		
+		//Hintergrund
 		g.drawImage(hintergrund, 0, 0, 531, 1062, getBackground(), null);
 		
+		//Plattformen + Items + Monster
 		try{
 			for(int i = 0; i < diePlattformen.size(); i++) {
 				Plattform diePlattform = diePlattformen.get(i);
@@ -118,8 +123,7 @@ public class DoodlePanel extends JPanel{
 			e.printStackTrace();
 		}
 		
-		
-		
+		//Punkte
 		String sPunkte = String.valueOf(punkte);
 		int lange  = sPunkte.length();
 		char[] punkteZeichnen = new char[lange];
@@ -127,10 +131,11 @@ public class DoodlePanel extends JPanel{
 			punkteZeichnen[i] = sPunkte.charAt(i);
 		}
 		g.setColor(Color.LIGHT_GRAY);
-		Font font = new Font("Arial Black", Font.PLAIN, 25); // Hier wird die Schriftart "Arial" mit einer Gr��e von 20pt erstellt.
+		Font font = new Font("Arial Black", Font.PLAIN, 25);
         g.setFont(font);
 		g.drawChars(punkteZeichnen, 0, lange, 20, 30);
 		
+		//Die Spielfigur
 		if(dieSpielfigur.gibEffekt() == 0) {
 			g.drawImage(spielfigur, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);			
 		}
@@ -149,8 +154,8 @@ public class DoodlePanel extends JPanel{
 		else if(dieSpielfigur.gibEffekt() == 5) {
 			g.drawImage(spielfigurSchussRechts, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
 		}
-		//g.drawImage(plattform_1, 0, 0, 125, 32, null, null);
 		
+		//Schuesse
 		for(int i = 0; i < dieSchuesse.size(); i++) {
 			Schuss derSchuss = dieSchuesse.get(i);
 			g.drawImage(kugel, derSchuss.gibPosX(), derSchuss.gibPosY(),60, 60, null, null);

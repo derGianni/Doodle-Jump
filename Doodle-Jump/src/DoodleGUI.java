@@ -22,7 +22,6 @@ import javax.swing.border.EmptyBorder;
 public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 
 	private JPanel contentPane;
-	private JPanel contentPane2;
 	private DoodlePanel dasDoodlePanel;
 	Spielfigur dieSpielfigur;
 	DoodleSteuerung dieDoodleSteuerung;
@@ -39,16 +38,72 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		 * frame = new DoodleGUI(); frame.setVisible(true); } catch (Exception e) {
 		 * e.printStackTrace(); } } });
 		 */
+		//Die Doodle GUI wird erstellt und sichtbar gemacht
 		DoodleGUI dieDoodleGUI = new DoodleGUI();
 		dieDoodleGUI.setVisible(true);
 
 
 	}
 
+
+	/**
+	 * Create the frame.
+	 */
+	//alle zusammen
+	public DoodleGUI() {
+		//Setze groeße des Fensters
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 800);
+		
+		//Die content Pane wird erstellt
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		//Die Spielfigur wird erstellt
+		dieSpielfigur = new Spielfigur(this);
+
+		//Die Steuerung wird erstellt und bekommt die Referenz auf die Spielfigur
+		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, this);
+		
+		//Das panel wird aus der Steuerung geholt
+		dasDoodlePanel = dieDoodleSteuerung.getPanel();
+
+		//Der Start button wird erstellt und angezeigt
+		JButton btnStart = new JButton("Start");
+		btnStart.setBounds(203, 400, 80, 40);
+		btnStart.setFocusable(false);
+		contentPane.add(btnStart, null);
+		
+		//Der action listener fuer den start button
+		btnStart.addActionListener(new ActionListener() {
+			//Wenn start gedrueckt wird, wird der timer gestartet und der button unsichtbar gemacht
+			public void actionPerformed(ActionEvent e) {
+				tim.start();
+				btnStart.setVisible(false);
+			}
+		});
+		
+		//Das doodle panel wird der content pane zugewiesen
+		contentPane.add(dasDoodlePanel);
+
+		//Es werden einmal Plattformen erzeugt
+		dieDoodleSteuerung.erzeugePlattformen();
+		
+		//Der timer wird gestartet
+		tim = new Timer(10, this);
+		this.addKeyListener(this);
+
+	}
+	
+	//Wenn verloren wird ein Dialog angezeigt auf dem das Fenster geschlossen oder neugestartet werden kann
+	//Lorenz
 	public void verloren() {
 		UIManager.put("OptionPane.yesButtonText", "Neustart");
 		UIManager.put("OptionPane.noButtonText", "Schliessen");
-		int wahl = JOptionPane.showConfirmDialog(contentPane, "Leider verloren \nErreichte Punkte: " +  dieDoodleSteuerung.getPunkte() + " \nHighscore: "+ dieDoodleSteuerung.highscore(), "Verloren", JOptionPane.YES_NO_OPTION);
+		int wahl = JOptionPane.showConfirmDialog(contentPane, "Leider verloren \nErreichte Punkte: " +  dieDoodleSteuerung.getPunkte() + " \nHighscore: "+ dieDoodleSteuerung.getHighscore(), "Verloren", JOptionPane.YES_NO_OPTION);
 		if (wahl == JOptionPane.YES_OPTION) {
 
 			tim.stop();
@@ -61,89 +116,37 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 		}
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public DoodleGUI() {
-		
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 800);
-		// Das panel hat die Gr��e 531 x 1062
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-
-		dieSpielfigur = new Spielfigur(this);
-
-		dieDoodleSteuerung = new DoodleSteuerung(dieSpielfigur, this);
-		dieDoodleSteuerung.erzeugePlattformen();
-		
-		dasDoodlePanel = dieDoodleSteuerung.getPanel();
-		contentPane.add(dasDoodlePanel, BorderLayout.CENTER);
-
-		JButton btnStart = new JButton("Start");
-		btnStart.setBounds(203, 400, 80, 40);
-		btnStart.setFocusable(false);
-
-		contentPane.add(btnStart, null);
-
-		setContentPane(contentPane);
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				tim.start();
-				btnStart.setVisible(false);
-				// contentPane.remove(btnStart);
-
-			}
-		});
-	
-
-
-		contentPane.add(dasDoodlePanel);
-
-		dieDoodleSteuerung.erzeugePlattformen();
-
-		tim = new Timer(10, this);
-		this.addKeyListener(this);
-
-	}
-
+	//Action listener fuer den Timer
+	//alle zusammen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		dieDoodleSteuerung.verarbeiteTimerEvent();
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
+	//Key listener
+	//Marcel
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
 		switch (e.getKeyCode()) {
 
+		//Bewegung der Figur
 		case 39:
 			dieSpielfigur.setzeBewegungX(1);
 			break;
 		case 37:
 			dieSpielfigur.setzeBewegungX(2);
 			break;
+			
+		//Pause/Weiter
 		case 27:
 			if (tim.isRunning()) {
 				tim.stop();
 			} else {
-			
 				tim.start();
 			}
-
 			break;
+			
+		//Schießen
 		case 87:
 			if(dieSpielfigur.gibEffekt() == 0) {
 				dieSpielfigur.setzeEffekt(4);
@@ -164,16 +167,20 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		//Bewegung stoppen
 		if(e.getKeyCode() == 39 || e.getKeyCode() == 37) {
 			dieSpielfigur.setzeBewegungX(0);
 		}
+		//Schießen stoppen
 		else {
 			if(dieSpielfigur.gibEffekt() == 3 || dieSpielfigur.gibEffekt() == 4 || dieSpielfigur.gibEffekt() == 5) {
 				dieSpielfigur.setzeEffekt(0);
 			}
 		}
-
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {		
 	}
 
 }

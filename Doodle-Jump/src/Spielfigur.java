@@ -3,54 +3,63 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.Timer;
 
-
 public class Spielfigur {
-	
+	//Variablen
 	int posX = 203;
 	int posY = 600;
-	//0 = kein effekt, 1 = Feuerloescher, 2 = Sprungschuh
+	//0 = kein effekt, 1 = Feuerloescher, 2 = Sprungschuh, 3,4,5 = Schiessen
 	int effekt= 0;
 	int geschwindigkeitX = 0;
 	int timer = 0;
 	double geschwindigkeitY = 22;
 	double beschleunigung = 0.3;
 	DoodleGUI dieDoodleGUI;
-	 
+	
+	//Konstruktor mit Referenzen
 	Spielfigur(DoodleGUI pDieDoodleGUI){
 		dieDoodleGUI = pDieDoodleGUI;
 	}
+	
+	//Getter fuer die X-Koordinate
 	public int gibX() {
 		return posX;
 	}
 		
+	//Getter fuer die Y-Koordinate
 	public int gibY() {
 		return posY;
 	}
 	
+	//Getter fuer die den Effekt
 	public int gibEffekt() {
 		return effekt;
 	}
+	
+	//Setter fuer die Y-Koordinate
 	public void setzeY(int pPosY) {
 		posY = pPosY;
 	}
 	
+	//Setter fuer die Bewegung
 	public void setzeBewegungX(int pBewegungX) {
 		// 0 = Keine 1 = Links 2 = Rechts
 		geschwindigkeitX = pBewegungX;
 	}
 	
+	//Setter fuer die Bewegung
 	public void setzeBewegungY(int pBewegungY) {
 		geschwindigkeitY = pBewegungY;
 	}
-	
+	//Setter fuer den Effekt
 	public void setzeEffekt(int pEffekt) {
 		if(pEffekt >= 0 && pEffekt <= 5) {
 			effekt = pEffekt;
-			System.out.println(effekt);
 		}
 	}
 	
+	//Bewegung der Figur
 	public void bewege(ArrayList<Plattform> pDiePlattformen) {
+		//Lorenz
 		//Bewegungen in X-Richtung
 		if (geschwindigkeitX == 1) {
 			posX = posX + 5;
@@ -65,8 +74,8 @@ public class Spielfigur {
 			posX = 0;
 		}
 		
-		//Bewegungen in Y-Richtung
-		
+		//Beruerung mit einer Plattform
+		//Gian Luca
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
 			Plattform diePlattform = pDiePlattformen.get(i);
 			if(diePlattform.pruefeBeruehrt(posX, posY, 66, geschwindigkeitY)) {
@@ -88,6 +97,8 @@ public class Spielfigur {
 			}
 		}
 		
+		//Verhalten bei Effekten
+		//Gian Luca
 		if(effekt == 0) {
 			beschleunigung = 0.3;
 		}
@@ -112,21 +123,15 @@ public class Spielfigur {
 			}
 		}
 		
-		
+		//Bewegung in Y-Richtung
+		//Lorenz
 		posY = posY - (int)geschwindigkeitY;
 		geschwindigkeitY = geschwindigkeitY - beschleunigung;
 		
 		if(geschwindigkeitY < -12) {
 			geschwindigkeitY = -12;
 		}
-		
-		
-		
-	}
-	
-	
-		
-		
+	}	
 }
 
 

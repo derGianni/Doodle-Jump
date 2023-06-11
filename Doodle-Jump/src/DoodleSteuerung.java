@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.io.File;
 
 
-
 public class DoodleSteuerung {
+	//Variablen
 	private DoodleSteuerung dieDoodleSteuerung;
 	private Spielfigur dieSpielfigur;
 	private DoodlePanel dasDoodlePanel;
@@ -27,44 +27,60 @@ public class DoodleSteuerung {
 	int abstand = 100;
 	int schussTimer = 101;
 
-	
-	
+	//Konstruktor mit Referenzen
+	//Alle zusammen
 	public DoodleSteuerung(Spielfigur pSpielfigur,  DoodleGUI pDieDoodleGUI) {
 		dieSpielfigur = pSpielfigur;
-		dasDoodlePanel = new DoodlePanel(diePlattformen, dieSpielfigur, dieItems, dieSchuesse);
 		dieDoodleGUI = pDieDoodleGUI;
-		
+		dasDoodlePanel = new DoodlePanel(diePlattformen, dieSpielfigur, dieItems, dieSchuesse);
 	}
 	
-	public DoodlePanel getPanel()
-	{
+	//Getter für die Referenz auf das DoodlePanel
+	//Gian Luca
+	public DoodlePanel getPanel(){
 		return this.dasDoodlePanel;
 	}
 	
+	//Getter für die Punkte
+	//Lorenz
 	public int getPunkte() {
 		return punkte/100;
 	}
 	
+	//Timer event
+	//alle zusammen
 	public void verarbeiteTimerEvent() {
 		
+		//Bewege die Spielfigur
+		//Gian Luca
 		dieSpielfigur.bewege(diePlattformen);
 		
+		//Bewegung des Spielfeldes nach unten
+		//Gian Luca
+
 		if(dieSpielfigur.gibY() < 350) {
 			int ueberschuss = 350 - dieSpielfigur.gibY();
 			bewegePlattformen(ueberschuss);
 			dieSpielfigur.setzeY(350);
 			pruefePunktestand(ueberschuss);
 		}
+		
+		//Pruefung ob man verloren hat
+		//Marcel
 		pruefeVerloren();
 		
-		dasDoodlePanel.repaint();
 		
+		//Die bewegende Plattform wird bewegt
+		//Lorenz + Gian Luca
 		for(int i = 0; i < diePlattformen.size(); i++) {
 			if(diePlattformen.get(i) instanceof DoodlePlattformBeweg) {
 				DoodlePlattformBeweg diePlattform = (DoodlePlattformBeweg) diePlattformen.get(i);
 				diePlattform.bewege();
 			}
 		}
+		
+		//Schuss funktion der Spielfigur
+		//Lorenz
 		if(dieSpielfigur.gibEffekt() == 3) {
 			if(schussTimer > 10) {
 				Schuss derSchuss = new Schuss(1, dieSpielfigur.gibX(), dieSpielfigur.gibY(), diePlattformen);
@@ -87,6 +103,9 @@ public class DoodleSteuerung {
 			}
 		}
 		schussTimer++;
+		
+		//Bewegung der Schuesse
+		//Lorenz
 		for(int i = 0; i < dieSchuesse.size(); i++) {
 			Schuss derSchuss = dieSchuesse.get(i);
 			derSchuss.bewege();
@@ -95,15 +114,20 @@ public class DoodleSteuerung {
 			}
 		}
 		
+		//Das Panel wird neu gezeichnet
+		dasDoodlePanel.repaint();
 		
 	}
 	
+	//Errechne und setze Punkte
+	//Lorenz
 	public void pruefePunktestand(int ueberschuss) {
 		punkte = punkte + ueberschuss;
-		//System.out.println(punkte/100 + " " + ueberschuss); 
 		dasDoodlePanel.setzePunkte(punkte/100);
 	}
 	
+	//Bewegt die Plattformen
+	//Gian Luca
 	public void bewegePlattformen(int pUeberschuss) {
 		int minPosGruppe = 0;
 		for(int i = 0; i<diePlattformen.size(); i++) {
@@ -117,23 +141,29 @@ public class DoodleSteuerung {
 			}
 		}
 		
+		//Errechne den Abstand
 		if(punkte >= 10000 && punkte <= 16500) {
 			abstand = punkte/100;
 			System.out.println(abstand);
 		}
-
+		
+		//Erzeuge neue Plattformen falls der abstand zu groß wird
 		if(minPosGruppe >= abstand) {
 			erzeugePlattformen();
 		}
 		loeschePlattformen();
 	}
+	
+	//Prueft ob jemand verloren hat
+	//Marcel
 	public void pruefeVerloren() {
-	    if(dieSpielfigur.gibY() > 755) {
+	    if(dieSpielfigur.gibY() > 685) {
 	        dieDoodleGUI.verloren();
 	      }
-	    
 	}
 	
+	//Prueft ob die Plattformen sich gegenseitig ueberschneiden
+	//Zusammen
 	boolean pruefePlattformen(Plattform diePlattform) {
 		for(int j = 0; j < diePlattformen.size(); j++) {
 			int x = diePlattformen.get(j).gibX();
@@ -162,29 +192,26 @@ public class DoodleSteuerung {
 		return false;
 	}
 	
+	//Loescht die Plattformen
+	//Marcel
 	void loeschePlattformen() {
 		for(int j = 0; j< diePlattformen.size();j++) {
-			
 			if(diePlattformen.get(j).gibY() >800){
 				diePlattformen.remove(j);
-			
 			}
-	}
+		}
 	}
 	
-	
+	//Erzeugt neue Plattformen
+	//Gian Luca
 	public void erzeugePlattformen() {
 		ArrayList<Plattform> zPlattformen = new ArrayList<Plattform>();
-		
 		int anzahl = ran.nextInt(3 - 1) + 1;
 		Plattform diePlattform;
 		
 			for(int i = 0; i < anzahl; i++) {
-				
-				
 				do {
 					int typ;
-					
 					if(punkte/100 < 70) {
 						 typ = 3;
 					}
@@ -194,7 +221,6 @@ public class DoodleSteuerung {
 					else {
 						typ = ran.nextInt(4 - 1) + 1;
 					}
-					
 					
 					switch(typ) {
 					case 1:
@@ -211,15 +237,12 @@ public class DoodleSteuerung {
 				} while(pruefePlattformen(diePlattform));
 				
 				diePlattformen.add(diePlattform);
-				
-				
-			//dasDoodlePanel.repaint();
-
-				
 			}
 		}
 	
-	public String highscore() {
+	//Giebt den Highscore zurueck
+	//Gian Luca + Lorenz
+	public String getHighscore() {
 		int pPunkte = punkte/100;
 		int highscore = 0;
 		
@@ -244,7 +267,6 @@ public class DoodleSteuerung {
             	System.err.println("Ungültiger Wert in der Highscore-Datei: " + line);
             	highscore = 0;
             }
-           
             reader.close();
         } catch (IOException e) {
             System.err.println("Fehler beim Lesen der Highscore-Datei: " + e.getMessage());
