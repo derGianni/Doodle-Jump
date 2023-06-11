@@ -17,6 +17,7 @@ public class DoodlePanel extends JPanel{
 	private BufferedImage spielfigurSchussLinks;
 	private BufferedImage spielfigurSchussGerade;
 	private BufferedImage spielfigurSchussRechts;
+	private BufferedImage kugel;
 	private BufferedImage feuerloescher;
 	private BufferedImage sprungschuhe;
 	private BufferedImage plattform_1;
@@ -47,6 +48,7 @@ public class DoodlePanel extends JPanel{
 			spielfigurSchussLinks = ImageIO.read(getClass().getResource("img/SpielfigurSchussLinks.png"));
 			spielfigurSchussGerade = ImageIO.read(getClass().getResource("img/SpielfigurSchussGerade.png"));
 			spielfigurSchussRechts = ImageIO.read(getClass().getResource("img/SpielfigurSchussRechts.png"));
+			kugel = ImageIO.read(getClass().getResource("img/SchussKugel.png"));
 			feuerloescher = ImageIO.read(getClass().getResource("img/Feuerloescher.png"));
 			sprungschuhe = ImageIO.read(getClass().getResource("img/Sprungschuhe.png"));
 			plattform_1 = ImageIO.read(getClass().getResource("img/Plattform_1.png"));
@@ -80,14 +82,15 @@ public class DoodlePanel extends JPanel{
 		try{
 			for(int i = 0; i < diePlattformen.size(); i++) {
 				Plattform diePlattform = diePlattformen.get(i);
-				if(diePlattform instanceof DoodlePlattform) {
-					g.drawImage(plattform_1, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
-				}
-				else if(diePlattform instanceof DoodlePlattformBrech) {
+				if(diePlattform instanceof DoodlePlattformBrech) {
 					g.drawImage(plattform_2, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
 				}
-				else if(diePlattform instanceof DoodlePlattformBeweg)
+				else if(diePlattform instanceof DoodlePlattformBeweg) {
 					g.drawImage(plattform_3, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
+				}
+				else {
+					g.drawImage(plattform_1, diePlattform.gibX(), diePlattform.gibY(), 90,22,null, null);
+				}
 				Item dasItem = diePlattform.gibItem();
 				if (dasItem != null){
 					if(dasItem instanceof DoodleItemFeuerloescher) {
@@ -100,13 +103,13 @@ public class DoodlePanel extends JPanel{
 				Monster dasMonster = diePlattform.gibMonster();
 				if(dasMonster != null) {
 					if(dasMonster.gibTyp() == 0) {
-						g.drawImage(gegner_1, diePlattform.gibX() + 18, diePlattform.gibY() - 25, 53,30,null, null);
+						g.drawImage(gegner_1, diePlattform.gibX() + 10, diePlattform.gibY() - 42, 73,50,null, null);
 					}
 					else if(dasMonster.gibTyp() == 1) {
-						g.drawImage(gegner_2, diePlattform.gibX() + 18, diePlattform.gibY() - 25, 53,30,null, null);
+						g.drawImage(gegner_2, diePlattform.gibX() + 10, diePlattform.gibY() - 45, 73,50,null, null);
 					}
 					else if(dasMonster.gibTyp() == 2) {
-						g.drawImage(gegner_3, diePlattform.gibX() + 18, diePlattform.gibY() - 25, 53,30,null, null);
+						g.drawImage(gegner_3, diePlattform.gibX() + 6, diePlattform.gibY() - 42, 80,50,null, null);
 					}
 				}
 			}
@@ -141,7 +144,7 @@ public class DoodlePanel extends JPanel{
 			g.drawImage(spielfigurSchussLinks, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
 		}
 		else if(dieSpielfigur.gibEffekt() == 4) {
-			g.drawImage(spielfigurSchussGerade, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 120, 150, null, null);
+			g.drawImage(spielfigurSchussGerade, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
 		}
 		else if(dieSpielfigur.gibEffekt() == 5) {
 			g.drawImage(spielfigurSchussRechts, dieSpielfigur.gibX(), dieSpielfigur.gibY(), 66, 75, null, null);
@@ -150,7 +153,7 @@ public class DoodlePanel extends JPanel{
 		
 		for(int i = 0; i < dieSchuesse.size(); i++) {
 			Schuss derSchuss = dieSchuesse.get(i);
-			g.drawImage(spielfigurSchussRechts, derSchuss.gibPosX(), derSchuss.gibPosY(), 66, 75, null, null);
+			g.drawImage(kugel, derSchuss.gibPosX(), derSchuss.gibPosY(),60, 60, null, null);
 		}
 	}
 

@@ -117,8 +117,9 @@ public class DoodleSteuerung {
 			}
 		}
 		
-		if(punkte >= 10000 && punkte <= 20000) {
+		if(punkte >= 10000 && punkte <= 16500) {
 			abstand = punkte/100;
+			System.out.println(abstand);
 		}
 
 		if(minPosGruppe >= abstand) {
@@ -182,16 +183,28 @@ public class DoodleSteuerung {
 				
 				
 				do {
-					int typ = ran.nextInt(4 - 1) + 1;
+					int typ;
+					
+					if(punkte/100 < 70) {
+						 typ = 3;
+					}
+					else if(punkte/100 < 160){
+						 typ = ran.nextInt(4 - 2) + 2;
+					}
+					else {
+						typ = ran.nextInt(4 - 1) + 1;
+					}
+					
+					
 					switch(typ) {
 					case 1:
-						diePlattform = new DoodlePlattformBrech();
+						diePlattform = new DoodlePlattformBrech(punkte/100);
 					break;
 					case 2:
-						diePlattform = new DoodlePlattformBeweg();
+						diePlattform = new DoodlePlattformBeweg(punkte/100);
 					break;
 					default:
-						diePlattform = new DoodlePlattform();
+						diePlattform = new Plattform(punkte/100);
 					break;
 					}
 					 

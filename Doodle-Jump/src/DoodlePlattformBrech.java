@@ -2,8 +2,9 @@
 
 public class DoodlePlattformBrech extends Plattform{
 	
-	DoodlePlattformBrech(){
-		
+	DoodlePlattformBrech(int score){
+		super(score);
+
 	}
 	
 	

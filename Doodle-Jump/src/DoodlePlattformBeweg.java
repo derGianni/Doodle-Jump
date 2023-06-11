@@ -4,8 +4,9 @@ public class DoodlePlattformBeweg extends Plattform{
 	int bewegung = 0;
 	int richtung = 1;
 	
-	DoodlePlattformBeweg(){
-				
+	DoodlePlattformBeweg(int score){
+		super(score);
+
 	}
 	
 	void bewege(){

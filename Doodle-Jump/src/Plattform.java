@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public abstract class Plattform {
+public class Plattform {
 	int posX = 0;
 	int posY = 0;
 	static Random ran = new Random();
@@ -8,20 +8,36 @@ public abstract class Plattform {
 	int geschwindigkeit = 1;
 	Item dasItem;
 	Monster dasMonster;
-	public Plattform() {
+	public Plattform(int score) {
 			posX = ran.nextInt(383 - 1) + 1;
 			posY = ran.nextInt(100 - 1) + 1;
 			posY = posY * -1;
-			int item = ran.nextInt(20 - 1) + 1;
+			int item;
+			if(score <= 200) {
+				item = ran.nextInt(70 - 5) + 5;
+			}
+			else {
+				item = ran.nextInt(50 - 1) + 1;
+			}
+			
 			switch (item){
 				case 1:
-					dasItem = new DoodleItemFeuerloescher();
+					dasMonster = new Monster();
 				break;
 				case 2:
-					dasItem = new DoodleItemSprungschuh();
+					dasMonster = new Monster();
 				break;
 				case 3:
 					dasMonster = new Monster();
+				break;
+				case 4:
+					dasMonster = new Monster();
+				break;
+				case 5:
+					dasItem = new DoodleItemSprungschuh();
+				break;
+				case 6:
+					dasItem = new DoodleItemFeuerloescher();
 				break;
 			}
 	}

@@ -12,8 +12,8 @@ public class Spielfigur {
 	int effekt= 0;
 	int geschwindigkeitX = 0;
 	int timer = 0;
-	double geschwindigkeitY = 20;
-	double beschleunigung = 0.2;
+	double geschwindigkeitY = 22;
+	double beschleunigung = 0.3;
 	DoodleGUI dieDoodleGUI;
 	 
 	Spielfigur(DoodleGUI pDieDoodleGUI){
@@ -46,6 +46,7 @@ public class Spielfigur {
 	public void setzeEffekt(int pEffekt) {
 		if(pEffekt >= 0 && pEffekt <= 5) {
 			effekt = pEffekt;
+			System.out.println(effekt);
 		}
 	}
 	
@@ -69,7 +70,7 @@ public class Spielfigur {
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
 			Plattform diePlattform = pDiePlattformen.get(i);
 			if(diePlattform.pruefeBeruehrt(posX, posY, 66, geschwindigkeitY)) {
-				geschwindigkeitY = 10;
+				geschwindigkeitY = 12;
 				if(diePlattform instanceof DoodlePlattformBrech) {
 					pDiePlattformen.remove(i);
 				}
@@ -87,10 +88,13 @@ public class Spielfigur {
 			}
 		}
 		
-		if(effekt == 1) {
+		if(effekt == 0) {
+			beschleunigung = 0.3;
+		}
+		else if(effekt == 1) {
 			if(timer < 200) {
 				timer++;
-				geschwindigkeitY = 10;
+				geschwindigkeitY = 12;
 			}
 			else {
 				timer = 0;
@@ -105,7 +109,6 @@ public class Spielfigur {
 			else {
 				timer = 0;
 				effekt = 0;
-				beschleunigung = 0.2;
 			}
 		}
 		
@@ -113,8 +116,8 @@ public class Spielfigur {
 		posY = posY - (int)geschwindigkeitY;
 		geschwindigkeitY = geschwindigkeitY - beschleunigung;
 		
-		if(geschwindigkeitY < -10) {
-			geschwindigkeitY = -10;
+		if(geschwindigkeitY < -12) {
+			geschwindigkeitY = -12;
 		}
 		
 		

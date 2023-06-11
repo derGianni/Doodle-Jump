@@ -145,13 +145,19 @@ public class DoodleGUI extends JFrame implements ActionListener, KeyListener {
 
 			break;
 		case 87:
-			dieSpielfigur.setzeEffekt(4);
+			if(dieSpielfigur.gibEffekt() == 0) {
+				dieSpielfigur.setzeEffekt(4);
+			}
 			break;
 		case 65:
-			dieSpielfigur.setzeEffekt(3);
+			if(dieSpielfigur.gibEffekt() == 0) {
+				dieSpielfigur.setzeEffekt(3);
+			}
 			break;
 		case 68:
-			dieSpielfigur.setzeEffekt(5);	
+			if(dieSpielfigur.gibEffekt() == 0) {
+				dieSpielfigur.setzeEffekt(5);
+			}
 			break;
 		}
 	}

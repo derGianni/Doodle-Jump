@@ -9,7 +9,7 @@ public class Schuss {
 	
 	Schuss(int pRichtung, int pPosX, int pPosY, ArrayList<Plattform> pDiePlattformen) {
 		richtung = pRichtung;
-		posX = pPosX;
+		posX = pPosX + 10;
 		posY = pPosY;
 		diePlattformen = pDiePlattformen;
 	}
@@ -40,7 +40,6 @@ public class Schuss {
 			Plattform diePlattform = diePlattformen.get(i);
 			if(diePlattform.gibItem() != null || diePlattform.gibMonster() != null) {
 				if(diePlattform.pruefeBeruehrt(posX, posY, 10, -10)) {
-					diePlattform.loescheItem();
 					diePlattform.loescheGegner();
 				}
 				
