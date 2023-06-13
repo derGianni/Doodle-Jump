@@ -79,7 +79,7 @@ public class Spielfigur {
 		for(int i = 0; i < pDiePlattformen.size(); i++) {
 			Plattform diePlattform = pDiePlattformen.get(i);
 			if(diePlattform.pruefeBeruehrt(posX, posY, 66, geschwindigkeitY)) {
-				geschwindigkeitY = 12;
+				geschwindigkeitY = 13;
 				if(diePlattform instanceof DoodlePlattformBrech) {
 					pDiePlattformen.remove(i);
 				}
@@ -105,7 +105,7 @@ public class Spielfigur {
 		else if(effekt == 1) {
 			if(timer < 200) {
 				timer++;
-				geschwindigkeitY = 12;
+				geschwindigkeitY = 13;
 			}
 			else {
 				timer = 0;
@@ -128,8 +128,8 @@ public class Spielfigur {
 		posY = posY - (int)geschwindigkeitY;
 		geschwindigkeitY = geschwindigkeitY - beschleunigung;
 		
-		if(geschwindigkeitY < -12) {
-			geschwindigkeitY = -12;
+		if(geschwindigkeitY < -13) {
+			geschwindigkeitY = -13;
 		}
 	}	
 }
